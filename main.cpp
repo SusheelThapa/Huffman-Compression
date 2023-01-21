@@ -1,3 +1,4 @@
+
 //Using SDL and standard IO
 #include <SDL2/SDL.h>>
 #include <stdio.h>
@@ -49,6 +50,7 @@ int main( int argc, char* args[] )
     SDL_DestroyWindow( window );
 
     //Quit SDL subsystems
+
     SDL_Quit();
 
     return 0;

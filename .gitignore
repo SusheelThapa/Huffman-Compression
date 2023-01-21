@@ -31,8 +31,12 @@
 *.out
 *.app
 
-#Headers
-include/
-
-#vscode
+# Common file to ignore in both OS
 .vscode/
+
+# Custom ignore file for Linux
+main
+bin/
+
+# Custom ignore file for Window
+include/

@@ -39,4 +39,5 @@ main
 bin/
 
 # Custom ignore file for Window
-include/
+include/lib
+include/SDL2

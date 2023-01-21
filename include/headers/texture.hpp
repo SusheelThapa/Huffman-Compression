@@ -63,5 +63,5 @@ public:
 
     int getHeight();
 
-    void render(Window &window, int x, int y, SDL_Rect *render_rect = NULL, SDL_Rect *render_quad = nullptr, double angle = 0.0, SDL_Point *center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    void render(Window &window, int x, int y, SDL_Rect *render_rect = NULL, double angle = 0.0, SDL_Point *center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 };

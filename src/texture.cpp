@@ -59,6 +59,9 @@ bool Texture::loadFromFile(Window &window, std::string path)
     width = new_surface->w;
     height = new_surface->h;
 
+    std::cout << "Height = " << height << std::endl;
+    std::cout << "Width = " << width << std::endl;
+
     /*Free up the surface*/
     SDL_FreeSurface(new_surface);
 
@@ -121,14 +124,16 @@ int Texture::getHeight()
 }
 
 void Texture::render(Window &window, int x, int y,
-                     SDL_Rect *render_rect, SDL_Rect *render_quad, double angle,
+                     SDL_Rect *render_rect, double angle,
                      SDL_Point *center, SDL_RendererFlip flip)
 {
 
-    if (render_quad == NULL)
+    SDL_Rect renderQuad = {x, y, width, height};
+    if (render_rect != nullptr)
     {
-        render_quad = new SDL_Rect{x, y, window.getWidth(), window.getHeight()};
+        renderQuad.w = render_rect->w;
+        renderQuad.h = render_rect->h;
     }
 
-    SDL_RenderCopyEx(window.renderer, texture, render_rect, render_quad, angle, center, flip);
+    SDL_RenderCopyEx(window.renderer, texture, render_rect, &renderQuad, angle, center, flip);
 }

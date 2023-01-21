@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+#Headers
+include/
+
+#vscode
+.vscode/

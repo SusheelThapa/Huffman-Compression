@@ -185,11 +185,6 @@ void Window::handleEvent()
             default:
                 break;
             }
-
-            std::cout << camera.x << std::endl;
-            std::cout << camera.y << std::endl;
-            std::cout << camera.w << std::endl;
-            std::cout << camera.h << std::endl;
         }
     }
 }

@@ -141,6 +141,8 @@ void Window::handleEvent()
         }
         else if (e.type == SDL_KEYDOWN)
         {
+            // std::cout << e.key.keysym.sym << std::endl;
+            // std::cout
             switch (e.key.keysym.sym)
             {
             case SDLK_UP:
@@ -180,6 +182,29 @@ void Window::handleEvent()
                     camera.x = maxWidth - 1280;
                 }
 
+                break;
+
+            case SDLK_a:
+
+                camera.w = camera.w / scaleFactor;
+                camera.h = camera.h / scaleFactor;
+
+                if (camera.w < 1280 || camera.h < 720)
+                {
+                    camera.w = 1280;
+                    camera.h = 720;
+                }
+
+                break;
+            case SDLK_s:
+                camera.w = camera.w * scaleFactor;
+                camera.h = camera.h * scaleFactor;
+
+                if (camera.w > 1280 * 4 || camera.h > 720 * 4)
+                {
+                    camera.w = 1280 * 4;
+                    camera.h = 720 * 4;
+                }
                 break;
 
             default:

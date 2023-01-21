@@ -16,6 +16,8 @@ private:
 
     static const int height = 720;
 
+    const float scaleFactor = 1.1;
+
     bool closed = false;
 
     SDL_Window *window = nullptr;

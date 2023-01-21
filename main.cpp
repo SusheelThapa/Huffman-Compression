@@ -1,57 +1,42 @@
+#include "headers/header.hpp"
 
-//Using SDL and standard IO
-#include <SDL2/SDL.h>
-#include <stdio.h>
-
-//Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-
-int main( int argc, char* args[] )
+int main(int argc, char* argv[])
 {
-    //The window we'll be rendering to
-    SDL_Window* window = NULL;
-    
-    //The surface contained by the window
-    SDL_Surface* screenSurface = NULL;
+	//Starts up SDL and create window
+	if (!init()) {
+		printf("Failed to initialize!");
+	}
+	else
+	{
 
-    //Initialize SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-    {
-        printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
-    }
+        //Sample Code to see if everything works
+        SDL_RenderClear(gRenderer);
+        SDL_Rect fillRect = {10, 10, 100, 100};
+        SDL_SetRenderDrawColor(gRenderer, 255, 0, 0, 255);
+        SDL_RenderFillRect(gRenderer, &fillRect);
+        SDL_RenderPresent(gRenderer);
 
-    else
-    {
-        //Create window
-        window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-        if( window == NULL )
-        {
-            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
-        }
+		//Quit when the user wants
+		SDL_Event e;
+		
+		bool quit = false;
+		while (!quit)
+		{
+			while (SDL_PollEvent(&e))
+			{
+				if (e.type == SDL_QUIT) {
+					quit = true;
+				}
 
-         else
-        {
-            //Get window surface
-            screenSurface = SDL_GetWindowSurface( window );
+				if (e.key.keysym.sym == SDL_SCANCODE_ESCAPE) {
+					quit = true;
+				}
+			}
+		}
+	}
 
-            //Fill the surface white
-            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
-            
-            //Update the surface
-            SDL_UpdateWindowSurface( window );
+	//Free resources and close SDL
+	close();
 
-            //Hack to get window to stay up
-            SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
-        }
-    }
-    
-    //Destroy window
-    SDL_DestroyWindow( window );
-
-    //Quit SDL subsystems
-
-    SDL_Quit();
-
-    return 0;
+	return 0;
 }

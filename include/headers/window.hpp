@@ -12,9 +12,9 @@ class Window
 private:
     std::string title;
 
-    static const int width = 400;
+    static const int width = 1280;
 
-    static const int height = 400;
+    static const int height = 720;
 
     bool closed = false;
 
@@ -24,6 +24,9 @@ private:
 
 public:
     SDL_Renderer *renderer = nullptr;
+    SDL_Rect camera;
+    static const int maxWidth = 2560;
+    static const int maxHeight = 1600;
 
 private:
     bool init();

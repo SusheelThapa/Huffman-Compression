@@ -2,6 +2,7 @@
 
 bool Window::init()
 {
+    camera = {0, 0, width, height};
     this->closed = false;
 
     bool status = true;
@@ -137,6 +138,58 @@ void Window::handleEvent()
         if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
         {
             this->closed = true;
+        }
+        else if (e.type == SDL_KEYDOWN)
+        {
+            switch (e.key.keysym.sym)
+            {
+            case SDLK_UP:
+
+                camera.y -= 50;
+                if (camera.y < 0)
+                {
+                    camera.y = 0;
+                    break;
+                }
+
+                break;
+            case SDLK_DOWN:
+                camera.y += 50;
+
+                if (camera.y + 720 > maxHeight)
+                {
+                    camera.y = maxHeight - 720;
+                }
+
+                break;
+            case SDLK_LEFT:
+
+                camera.x -= 50;
+                if (camera.x < 0)
+                {
+                    camera.x = 0;
+                }
+
+                break;
+
+            case SDLK_RIGHT:
+
+                camera.x += 50;
+                if (camera.x + 1280 > maxWidth)
+                {
+                    camera.x = maxWidth - 1280;
+                }
+
+                break;
+
+            default:
+                break;
+            }
+
+            std::cout << camera.x << std::endl;
+            std::cout << camera.y << std::endl;
+            std::cout << camera.w << std::endl;
+            std::cout << camera.h << std::endl;
         }
     }
 }

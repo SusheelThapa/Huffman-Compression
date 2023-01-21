@@ -16,7 +16,9 @@ int main(int argc, char *argv[])
 
 		window.clear({24, 100, 200, 150});
 
-		windowBackground.render(window, 0, 0);
+		SDL_Rect display = window.camera;
+
+		windowBackground.render(window, 0, 0, &display);
 		window.present();
 	}
 

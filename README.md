@@ -22,13 +22,19 @@
 
 ### Linux
 
+1. Giving `build.sh` file executable permission.
+
+   ```sh
+   chmod +x build.sh
+   ```
+
 1. Compiling the project
 
    ```sh
-   make all
+   ./build.sh
    ```
 
-2. Running project
+1. Running project
 
    ```sh
    ./main

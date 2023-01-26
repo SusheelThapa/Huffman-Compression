@@ -2,7 +2,6 @@
 
 bool Window::init()
 {
-    camera = {0, 0, width, height};
     this->closed = false;
 
     bool status = true;
@@ -29,7 +28,7 @@ bool Window::init()
         title.c_str(),
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        width, height,
+        screenWidth, screenHeight,
         SDL_WINDOW_SHOWN);
 
     if (window == nullptr)
@@ -95,8 +94,9 @@ bool Window::init()
 
 Window::Window()
 {
-
     init();
+    offsetCords.x = -screenWidth / 2;
+    offsetCords.y = -screenHeight / 2;
 }
 
 Window::Window(std::string title)
@@ -135,82 +135,53 @@ void Window::handleEvent()
 {
     while (SDL_PollEvent(&this->e) != 0)
     {
-        if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
+        switch(e.type)
         {
-            this->closed = true;
-        }
-        else if (e.type == SDL_KEYDOWN)
-        {
-            // std::cout << e.key.keysym.sym << std::endl;
-            // std::cout
-            switch (e.key.keysym.sym)
-            {
-            case SDLK_UP:
-
-                camera.y -= 50;
-                if (camera.y < 0)
-                {
-                    camera.y = 0;
-                    break;
-                }
-
-                break;
-            case SDLK_DOWN:
-                camera.y += 50;
-
-                if (camera.y + 720 > maxHeight)
-                {
-                    camera.y = maxHeight - 720;
-                }
-
-                break;
-            case SDLK_LEFT:
-
-                camera.x -= 50;
-                if (camera.x < 0)
-                {
-                    camera.x = 0;
-                }
-
+            case SDL_QUIT:
+                this->closed = true;
                 break;
 
-            case SDLK_RIGHT:
-
-                camera.x += 50;
-                if (camera.x + 1280 > maxWidth)
+            case SDL_MOUSEMOTION:
+                mousePos = {e.motion.x, e.motion.y};
+                if(leftMouseButtonDown)
                 {
-                    camera.x = maxWidth - 1280;
-                }
+                    if(offsetCords.x < 0) {offsetCords.x = 0;}
 
+                    else if(offsetCords.x + screenWidth > worldWidth) { offsetCords.x = worldWidth - screenWidth;}
+
+                    else { offsetCords.x -= mousePos.x - startPan.x;}
+
+                    if(offsetCords.y < 0) { offsetCords.y = 0;}
+
+                    else if(offsetCords.y + screenHeight > worldHeight){ offsetCords.y = worldHeight - screenHeight;}
+
+                    else{ offsetCords.y -= mousePos.y - startPan.y;}
+
+                    startPan.x = mousePos.x;
+                    startPan.y = mousePos.y;
+                }
                 break;
 
-            case SDLK_a:
-
-                camera.w = camera.w / scaleFactor;
-                camera.h = camera.h / scaleFactor;
-
-                if (camera.w < 1280 || camera.h < 720)
+            case SDL_MOUSEBUTTONUP:
+                if(leftMouseButtonDown && e.button.button == SDL_BUTTON_LEFT)
                 {
-                    camera.w = 1280;
-                    camera.h = 720;
+                    leftMouseButtonDown = false;
                 }
-
                 break;
-            case SDLK_s:
-                camera.w = camera.w * scaleFactor;
-                camera.h = camera.h * scaleFactor;
 
-                if (camera.w > 1280 * 4 || camera.h > 720 * 4)
+            case SDL_MOUSEBUTTONDOWN:
+                if(!leftMouseButtonDown && e.button.button == SDL_BUTTON_LEFT)
                 {
-                    camera.w = 1280 * 4;
-                    camera.h = 720 * 4;
+                    leftMouseButtonDown = true;
+                    startPan.x = mousePos.x;
+                    startPan.y = mousePos.y;
                 }
                 break;
 
             default:
                 break;
-            }
         }
+        
     }
 }
 
@@ -235,10 +206,10 @@ bool Window::isWindowClosed()
 
 const int Window::getHeight()
 {
-    return height;
+    return screenHeight;
 }
 
 const int Window::getWidth()
 {
-    return width;
+    return screenWidth;
 }

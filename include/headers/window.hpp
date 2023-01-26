@@ -12,23 +12,30 @@ class Window
 private:
     std::string title;
 
-    static const int width = 1280;
+    static const int screenWidth = 1280;
 
-    static const int height = 720;
-
-    const float scaleFactor = 1.1;
+    static const int screenHeight = 720;
 
     bool closed = false;
+
+    bool leftMouseButtonDown = false;
 
     SDL_Window *window = nullptr;
 
     SDL_Event e;
 
+    SDL_Point startPan = {0,0};
+
+    SDL_Point mousePos;
+
 public:
     SDL_Renderer *renderer = nullptr;
-    SDL_Rect camera;
-    static const int maxWidth = 2560;
-    static const int maxHeight = 1600;
+
+    SDL_Point offsetCords = {0,0};
+
+    static const int worldWidth = 2560;
+
+    static const int worldHeight = 1600;
 
 private:
     bool init();

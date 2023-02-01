@@ -95,8 +95,6 @@ bool Window::init()
 Window::Window()
 {
     init();
-    offsetCords.x = -screenWidth / 2;
-    offsetCords.y = -screenHeight / 2;
 }
 
 Window::Window(std::string title)
@@ -135,53 +133,70 @@ void Window::handleEvent()
 {
     while (SDL_PollEvent(&this->e) != 0)
     {
-        switch(e.type)
+        switch (e.type)
         {
-            case SDL_QUIT:
-                this->closed = true;
-                break;
+        case SDL_QUIT:
+            this->closed = true;
+            break;
 
-            case SDL_MOUSEMOTION:
-                mousePos = {e.motion.x, e.motion.y};
-                if(leftMouseButtonDown)
+        case SDL_MOUSEMOTION:
+            mousePos = {e.motion.x, e.motion.y};
+            if (leftMouseButtonDown)
+            {
+                if (offsetCords.x < 0)
                 {
-                    if(offsetCords.x < 0) {offsetCords.x = 0;}
-
-                    else if(offsetCords.x + screenWidth > worldWidth) { offsetCords.x = worldWidth - screenWidth;}
-
-                    else { offsetCords.x -= mousePos.x - startPan.x;}
-
-                    if(offsetCords.y < 0) { offsetCords.y = 0;}
-
-                    else if(offsetCords.y + screenHeight > worldHeight){ offsetCords.y = worldHeight - screenHeight;}
-
-                    else{ offsetCords.y -= mousePos.y - startPan.y;}
-
-                    startPan.x = mousePos.x;
-                    startPan.y = mousePos.y;
+                    offsetCords.x = 0;
                 }
-                break;
 
-            case SDL_MOUSEBUTTONUP:
-                if(leftMouseButtonDown && e.button.button == SDL_BUTTON_LEFT)
+                else if (offsetCords.x + screenWidth > worldWidth)
                 {
-                    leftMouseButtonDown = false;
+                    offsetCords.x = worldWidth - screenWidth;
                 }
-                break;
 
-            case SDL_MOUSEBUTTONDOWN:
-                if(!leftMouseButtonDown && e.button.button == SDL_BUTTON_LEFT)
+                else
                 {
-                    leftMouseButtonDown = true;
-                    startPan.x = mousePos.x;
-                    startPan.y = mousePos.y;
+                    offsetCords.x -= mousePos.x - startPan.x;
                 }
-                break;
 
-            default:
-                break;
+                if (offsetCords.y < 0)
+                {
+                    offsetCords.y = 0;
+                }
+
+                else if (offsetCords.y + screenHeight > worldHeight)
+                {
+                    offsetCords.y = worldHeight - screenHeight;
+                }
+
+                else
+                {
+                    offsetCords.y -= mousePos.y - startPan.y;
+                }
+
+                startPan.x = mousePos.x;
+                startPan.y = mousePos.y;
+            }
+            break;
+
+        case SDL_MOUSEBUTTONUP:
+            if (leftMouseButtonDown && e.button.button == SDL_BUTTON_LEFT)
+            {
+                leftMouseButtonDown = false;
+            }
+            break;
+
+        case SDL_MOUSEBUTTONDOWN:
+            if (!leftMouseButtonDown && e.button.button == SDL_BUTTON_LEFT)
+            {
+                leftMouseButtonDown = true;
+                startPan.x = mousePos.x;
+                startPan.y = mousePos.y;
+            }
+            break;
+
+        default:
+            break;
         }
-        
     }
 }
 

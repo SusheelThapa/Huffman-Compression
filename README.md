@@ -16,7 +16,7 @@
    ./install.sh
    ```
 
-**_You can head over to running the project in [Linux](#linux-1)_**
+**_You can head over running the project in [Linux](#linux-1)_**
 
 ### Windows
 
@@ -31,11 +31,11 @@ git clone git@github.com:SusheelThapa/Huffman-Compression.git
 https://drive.google.com/drive/folders/13t9OIwvZkN2bkxj49nEdxqW1jjMEYFqs?usp=sharing
 
 
-3. Go to `Huffman-Compression\include` and paste the `lib` folders and additional include directories inside it.
+3. Go to the project's `include` directory and paste the `lib` folders and additional `include` directories inside it.
 
-4. Copy and paste the dll files to the main directory i.e `Huffman-Compression` (where main.cpp is located.)
+4. Copy and paste the dll files to the main directory i.e `Huffman-Compression`(where main.cpp is located.)
 
-**_You can head over to running the project in [Windows](#windows-1)_**
+**_You can head over running the project in [Windows](#windows-1)_**
 
 ## Running the Project
 

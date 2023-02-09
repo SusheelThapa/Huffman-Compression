@@ -13,11 +13,12 @@ class Button
     Rectangle buttonRect;
 
     Texture buttonTexture;
+    SDL_Color textColor = {0, 0, 0, 0};
 
     void createButtonTexture(Window &window)
     {
         TTF_Font *mainFont = TTF_OpenFont("resources/font/Helvetica-Bold.ttf", 16);
-        buttonTexture.loadFromText(window, mainFont, text, {0, 0, 0, 0});
+        buttonTexture.loadFromText(window, mainFont, text, textColor);
 
         buttonRect.setWidth(buttonTexture.getWidth() + padding.x + padding.w);
         buttonRect.setHeight(buttonTexture.getHeight() + padding.y + padding.h);
@@ -30,6 +31,9 @@ public:
     void setPadding(int left, int top, int right, int bottom);
     void setPadding(int horizontal, int vertical);
     void setPadding(int all);
+
+    void setBackgroundColor(SDL_Color color);
+    void setTextColor(SDL_Color color);
 
     void render(Window &window);
 };

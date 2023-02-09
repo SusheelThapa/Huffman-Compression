@@ -5,7 +5,7 @@
 class Rectangle
 {
 private:
-    SDL_Color color;
+    SDL_Color color = {255, 255, 255, 255};
     SDL_Point startingCords;
     int width, height;
 

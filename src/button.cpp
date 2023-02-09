@@ -26,11 +26,20 @@ void Button::setPadding(int all)
     this->padding = {all, all, all, all};
 }
 
+void Button::setBackgroundColor(SDL_Color color)
+{
+    buttonRect.setColor(color.r, color.g, color.b, color.a);
+}
+
+void Button::setTextColor(SDL_Color color)
+{
+    this->textColor = color;
+}
+
 void Button::render(Window &window)
 {
     this->createButtonTexture(window);
 
-    buttonRect.setColor(255, 255, 255, 255);
     buttonRect.render(window);
 
     buttonTexture.render(window,

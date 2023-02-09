@@ -15,6 +15,9 @@ int main(int argc, char *argv[])
 	randomize.setText("Randomize");
 	count.setText("Count");
 
+	randomize.setBackgroundColor({0, 0, 255, 255});
+	randomize.setTextColor({255, 255, 255, 255});
+
 	while (!window.isWindowClosed())
 	{
 		window.handleEvent();

@@ -1,25 +1,29 @@
 #include "window.hpp"
 #include "texture.hpp"
+#include "button.hpp"
 
 int main(int argc, char *argv[])
 {
 
 	Window window("Huffman Visualizer");
-	Texture windowBackground;
+	Button randomize, count;
 
-	std::string background = "resources/background.png";
-	windowBackground.loadFromFile(window, background);
+	randomize.setRenderCoordinate(10, 20);
+
+	count.setRenderCoordinate(200, 20);
+
+	randomize.setText("Randomize");
+	count.setText("Count");
 
 	while (!window.isWindowClosed())
 	{
 		window.handleEvent();
 
-		window.clear({24, 100, 200, 150});
+		window.clear({0, 0, 0, 0});
 
-		SDL_Rect display = {window.offsetCords.x, window.offsetCords.y, window.getWidth(), window.getHeight()};
+		randomize.render(window);
+		count.render(window);
 
-		windowBackground.render(window, 0, 0,  &display);
-		
 		window.present();
 	}
 	return 0;

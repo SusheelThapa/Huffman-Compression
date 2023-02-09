@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include <iostream>
 #include <string>
@@ -24,18 +25,18 @@ private:
 
     SDL_Event e;
 
-    SDL_Point startPan = {0,0};
+    SDL_Point startPan = {0, 0};
 
     SDL_Point mousePos;
 
 public:
     SDL_Renderer *renderer = nullptr;
 
-    SDL_Point offsetCords = {0,0};
+    SDL_Point offsetCords = {0, 0};
 
-    static const int worldWidth = 2560;
+    static const int worldWidth = 2560 * 2;
 
-    static const int worldHeight = 1600;
+    static const int worldHeight = 1600 * 2;
 
 private:
     bool init();

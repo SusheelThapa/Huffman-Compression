@@ -46,7 +46,7 @@ bool Window::init()
     renderer = SDL_CreateRenderer(
         window,
         -1,
-        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+        SDL_RENDERER_ACCELERATED);
 
     if (renderer == nullptr)
     {
@@ -212,6 +212,29 @@ void Window::clear(SDL_Color color)
 void Window::present()
 {
     SDL_RenderPresent(this->renderer);
+}
+
+void Window::checkOffset(SDL_Rect &display)
+{
+    if (display.x < 0)
+    {
+        display.x = 0;
+    }
+
+    if (display.y < 0)
+    {
+        display.y = 0;
+    }
+
+    if (display.x > this->getWidth())
+    {
+        display.x = this->getWidth();
+    }
+
+    if (display.y > this->getHeight())
+    {
+        display.y = this->getHeight();
+    }
 }
 
 bool Window::isWindowClosed()

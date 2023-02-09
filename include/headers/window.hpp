@@ -52,6 +52,8 @@ public:
 
     void present();
 
+    void checkOffset(SDL_Rect &display);
+
     bool isWindowClosed();
 
     static const int getWidth();

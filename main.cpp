@@ -3,7 +3,6 @@
 
 int main(int argc, char *argv[])
 {
-
 	Window window("Huffman Visualizer");
 	Texture windowBackground;
 
@@ -18,6 +17,8 @@ int main(int argc, char *argv[])
 
 		SDL_Rect display = {window.offsetCords.x, window.offsetCords.y, window.getWidth(), window.getHeight()};
 
+		window.checkOffset(display);
+		
 		windowBackground.render(window, 0, 0,  &display);
 		
 		window.present();

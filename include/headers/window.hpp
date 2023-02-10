@@ -23,7 +23,6 @@ private:
 
     SDL_Window *window = nullptr;
 
-    SDL_Event e;
 
     SDL_Point startPan = {0, 0};
 
@@ -47,7 +46,7 @@ public:
 
     ~Window();
 
-    void handleEvent();
+    void handleEvent(SDL_Event e);
 
     void clear(SDL_Color color);
 

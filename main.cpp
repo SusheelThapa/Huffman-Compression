@@ -1,33 +1,18 @@
-#include "window.hpp"
-#include "texture.hpp"
-#include "button.hpp"
+#include "huffman.hpp"
 
 int main(int argc, char *argv[])
 {
 
-	Window window("Huffman Visualizer");
-	Button randomize, count;
+	Huffman a;
 
-	randomize.setRenderCoordinate(10, 20);
-
-	count.setRenderCoordinate(200, 20);
-
-	randomize.setText("Randomize");
-	count.setText("Count");
-
-	randomize.setBackgroundColor({0, 0, 255, 255});
-	randomize.setTextColor({255, 255, 255, 255});
-
-	while (!window.isWindowClosed())
+	while (!a.window.isWindowClosed())
 	{
-		window.handleEvent();
+		a.handleEvent();
 
-		window.clear({0, 0, 0, 0});
+		a.randomize.render(a.window);
+		a.count.render(a.window);
 
-		randomize.render(window);
-		count.render(window);
-
-		window.present();
+		a.window.present();
 	}
 	return 0;
 }

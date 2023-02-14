@@ -142,6 +142,10 @@ void Window::handleEvent(SDL_Event e)
         mousePos = {e.motion.x, e.motion.y};
         if (leftMouseButtonDown)
         {
+
+            startPan.x = mousePos.x;
+            startPan.y = mousePos.y;
+
             if (offsetCords.x < 0)
             {
                 offsetCords.x = 0;
@@ -171,9 +175,6 @@ void Window::handleEvent(SDL_Event e)
             {
                 offsetCords.y -= mousePos.y - startPan.y;
             }
-
-            startPan.x = mousePos.x;
-            startPan.y = mousePos.y;
         }
         break;
 

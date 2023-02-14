@@ -13,7 +13,9 @@ public:
     Button randomize, count;
 
     Huffman()
+
     {
+
         randomize.setRenderCoordinate(200, 20);
         randomize.setRenderCoordinate(10, 20);
 
@@ -30,7 +32,7 @@ public:
     {
         while (SDL_PollEvent(&this->e) != 0)
         {
-            if(e.type == SDL_QUIT || e.type == SDL_MOUSEMOTION)
+            if (e.type == SDL_QUIT || e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
             {
                 window.handleEvent(e);
             }

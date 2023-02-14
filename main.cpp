@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
 	{
 		a.handleEvent();
 
+		a.window.clear({0, 0, 0, 0});
+
 		a.randomize.render(a.window);
 		a.count.render(a.window);
 

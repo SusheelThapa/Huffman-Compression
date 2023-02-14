@@ -12,4 +12,3 @@ echo "g++ $file_to_compile $includes $compiler_flags $SDL_library -o $output_fil
 
 # Compiling command
 g++ $file_to_compile $includes $compiler_flags $SDL_library -o $output_filename
-

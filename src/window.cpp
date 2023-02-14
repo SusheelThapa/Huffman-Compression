@@ -212,6 +212,29 @@ void Window::present()
     SDL_RenderPresent(this->renderer);
 }
 
+void Window::checkOffset(SDL_Rect &display)
+{
+    if (display.x < 0)
+    {
+        display.x = 0;
+    }
+
+    if (display.y < 0)
+    {
+        display.y = 0;
+    }
+
+    if (display.x > this->getWidth())
+    {
+        display.x = this->getWidth();
+    }
+
+    if (display.y > this->getHeight())
+    {
+        display.y = this->getHeight();
+    }
+}
+
 bool Window::isWindowClosed()
 {
     return this->closed;

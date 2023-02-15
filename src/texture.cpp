@@ -134,8 +134,5 @@ void Texture::render(Window &window, int x, int y,
         renderQuad.w = render_rect->w;
         renderQuad.h = render_rect->h;
     }
-
-    window.checkOffset(*render_rect);
-
     SDL_RenderCopyEx(window.renderer, texture, render_rect, &renderQuad, angle, center, flip);
 }

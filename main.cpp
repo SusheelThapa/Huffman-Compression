@@ -1,25 +1,20 @@
-#include "window.hpp"
-#include "texture.hpp"
+#include "huffman.hpp"
 
 int main(int argc, char *argv[])
 {
-	Window window("Huffman Visualizer");
-	Texture windowBackground;
 
-	std::string background = "resources/background.png";
-	windowBackground.loadFromFile(window, background);
+	Huffman a;
 
-	while (!window.isWindowClosed())
+	while (!a.window.isWindowClosed())
 	{
-		window.handleEvent();
+		a.handleEvent();
 
-		window.clear({24, 100, 200, 150});
+		a.window.clear({0, 0, 0, 0});
 
-		SDL_Rect display = {window.offsetCords.x, window.offsetCords.y, window.getWidth(), window.getHeight()};
-		
-		windowBackground.render(window, 0, 0,  &display);
-		
-		window.present();
+		a.randomize.render(a.window);
+		a.count.render(a.window);
+
+		a.window.present();
 	}
 	return 0;
 }

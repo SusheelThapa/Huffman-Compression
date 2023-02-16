@@ -1,6 +1,6 @@
 #include "window.hpp"
 #include "texture.hpp"
-#include "button.hpp"
+#include "button.old.hpp"
 
 class Huffman
 {
@@ -11,22 +11,14 @@ private:
 
 public:
     Window window;
-    Button randomize, count;
+
+    /*Texture to represent buttons in the program*/
+    Texture randomize, count;
 
     Huffman()
-
     {
-
-        randomize.setRenderCoordinate(200, 20);
-        randomize.setRenderCoordinate(10, 20);
-
-        count.setRenderCoordinate(200, 20);
-
-        randomize.setText("Randomize");
-        count.setText("Count");
-
-        randomize.setBackgroundColor({0, 0, 255, 255});
-        randomize.setTextColor({255, 255, 255, 255});
+       randomize.loadFromFile(window, "resources/images/button_randomize.png");
+       count.loadFromFile(window, "resources/images/button_count.png");
     }
 
     void handleEvent()

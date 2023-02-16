@@ -23,7 +23,6 @@ private:
 
     SDL_Window *window = nullptr;
 
-
     SDL_Point startPan = {0, 0};
 
     SDL_Point mousePos;
@@ -51,8 +50,6 @@ public:
     void clear(SDL_Color color);
 
     void present();
-
-    void checkOffset(SDL_Rect &display);
 
     bool isWindowClosed();
 

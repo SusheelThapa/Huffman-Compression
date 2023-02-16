@@ -143,30 +143,17 @@ void Window::handleEvent(SDL_Event e)
         if (leftMouseButtonDown)
         {
 
-            startPan.x = mousePos.x;
-            startPan.y = mousePos.y;
-
-            if (offsetCords.x < 0)
-            {
-                offsetCords.x = 0;
-            }
-
-            else if (offsetCords.x + screenWidth > worldWidth)
+            /*Handling the scrolling of the screen*/
+            if (offsetCords.x + screenWidth > worldWidth)
             {
                 offsetCords.x = worldWidth - screenWidth;
             }
-
             else
             {
                 offsetCords.x -= mousePos.x - startPan.x;
             }
 
-            if (offsetCords.y < 0)
-            {
-                offsetCords.y = 0;
-            }
-
-            else if (offsetCords.y + screenHeight > worldHeight)
+            if (offsetCords.y + screenHeight > worldHeight)
             {
                 offsetCords.y = worldHeight - screenHeight;
             }
@@ -175,6 +162,20 @@ void Window::handleEvent(SDL_Event e)
             {
                 offsetCords.y -= mousePos.y - startPan.y;
             }
+
+            /*Resetting the value of offset value if they are negative*/
+
+            if (offsetCords.x < 0)
+            {
+                offsetCords.x = 0;
+            }
+            if (offsetCords.y < 0)
+            {
+                offsetCords.y = 0;
+            }
+
+            startPan.x = mousePos.x;
+            startPan.y = mousePos.y;
         }
         break;
 
@@ -211,29 +212,6 @@ void Window::clear(SDL_Color color)
 void Window::present()
 {
     SDL_RenderPresent(this->renderer);
-}
-
-void Window::checkOffset(SDL_Rect &display)
-{
-    if (display.x < 0)
-    {
-        display.x = 0;
-    }
-
-    if (display.y < 0)
-    {
-        display.y = 0;
-    }
-
-    if (display.x > this->getWidth())
-    {
-        display.x = this->getWidth();
-    }
-
-    if (display.y > this->getHeight())
-    {
-        display.y = this->getHeight();
-    }
 }
 
 bool Window::isWindowClosed()

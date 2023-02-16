@@ -132,6 +132,7 @@ Window::~Window()
 void Window::handleEvent(SDL_Event e)
 {
 
+    /*IT is used to handle the event that are passed to it*/
     switch (e.type)
     {
     case SDL_QUIT:
@@ -211,6 +212,7 @@ void Window::clear(SDL_Color color)
 
 void Window::present()
 {
+    /*Update the screen*/
     SDL_RenderPresent(this->renderer);
 }
 

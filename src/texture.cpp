@@ -128,6 +128,8 @@ void Texture::render(Window &window, int x, int y,
                      SDL_Point *center, SDL_RendererFlip flip)
 {
 
+    /*Render the texture in the in window in the specified place*/
+
     SDL_Rect renderQuad = {x, y, width, height};
     if (render_rect != nullptr)
     {

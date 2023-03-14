@@ -17,8 +17,8 @@ public:
 
     Huffman()
     {
-       randomize.loadFromFile(window, "resources/images/button_randomize.png");
-       count.loadFromFile(window, "resources/images/button_count.png");
+       randomize.loadFromFile(window, "resources/DesignedElements/Randomizebutton.png");
+       count.loadFromFile(window, "resources/DesignedElements/CountButton.png");
     }
 
     void handleEvent()

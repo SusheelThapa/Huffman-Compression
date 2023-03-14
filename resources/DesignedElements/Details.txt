@@ -1,0 +1,3 @@
+Randomize button: 255x90 px
+Count button: 255x90 px
+Build button: 228x146 px

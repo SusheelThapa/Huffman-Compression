@@ -1,14 +1,3 @@
-/*
-
-Author : Susheel Thapa
-
-Filename : texture.hpp
-
-A custom made class which helps you with image loading over window
-surface or a part of the window, loading text over the window,etc
-
-*/
-
 #pragma once
 
 #include "window.hpp"

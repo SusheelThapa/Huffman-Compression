@@ -59,9 +59,6 @@ bool Texture::loadFromFile(Window &window, std::string path)
     width = new_surface->w;
     height = new_surface->h;
 
-    std::cout << "Height = " << height << std::endl;
-    std::cout << "Width = " << width << std::endl;
-
     /*Free up the surface*/
     SDL_FreeSurface(new_surface);
 
@@ -127,6 +124,8 @@ void Texture::render(Window &window, int x, int y,
                      SDL_Rect *render_rect, double angle,
                      SDL_Point *center, SDL_RendererFlip flip)
 {
+
+    /*Render the texture in the in window in the specified place*/
 
     SDL_Rect renderQuad = {x, y, width, height};
     if (render_rect != nullptr)

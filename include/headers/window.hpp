@@ -11,6 +11,7 @@ class Window
 {
 
 private:
+    /*Private Variables*/
     std::string title;
 
     static const int screenWidth = 1280;
@@ -23,12 +24,12 @@ private:
 
     SDL_Window *window = nullptr;
 
-
     SDL_Point startPan = {0, 0};
 
     SDL_Point mousePos;
 
 public:
+    /*Public Variables*/
     SDL_Renderer *renderer = nullptr;
 
     SDL_Point offsetCords = {0, 0};
@@ -38,9 +39,11 @@ public:
     static const int worldHeight = 1600 * 2;
 
 private:
+    /*Private Function*/
     bool init();
 
 public:
+    /*Public Function*/
     Window();
     Window(std::string);
 
@@ -51,8 +54,6 @@ public:
     void clear(SDL_Color color);
 
     void present();
-
-    void checkOffset(SDL_Rect &display);
 
     bool isWindowClosed();
 

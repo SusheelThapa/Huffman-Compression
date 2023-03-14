@@ -1,6 +1,7 @@
 #include "window.hpp"
 #include "texture.hpp"
 #include "button.old.hpp"
+#include "queue.hpp"
 
 class Huffman
 {

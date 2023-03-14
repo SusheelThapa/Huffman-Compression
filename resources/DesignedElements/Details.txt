@@ -1,3 +1,28 @@
-Randomize button: 255x90 px
-Count button: 255x90 px
+**CHECK REFERENCE.PNG TO SEE WHAT THE RESULT SHOULD LOOK LIKE**
+
+
+Randomize button: 
+255x90 px 
+Position: X:126 px Y:71 px
+
+Count button: 
+255x90 px
+Position: X: 583 px Y:71 px
+
 Build button: 228x146 px
+Position: X:1107 px Y: 27 px
+
+Rectangle background: 1140 x 1024 px
+X: 0 px Y: 0 px
+
+Randomized Textbox:
+440 x 688 px
+X: 77 px Y: 203 px
+
+Counted Textbox:
+723 x 680 px
+X: 612 px Y: 203 px
+
+CreditsBar:
+1088 x 54 px
+X: 238 px Y: 933 px

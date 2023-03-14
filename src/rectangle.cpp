@@ -42,6 +42,7 @@ SDL_Color Rectangle::getColor()
 
 void Rectangle::render(Window &window)
 {
+    /*Render the fill rectangle of provide dimension and color in the screen*/
     SDL_SetRenderDrawColor(window.renderer, this->getColor().r, this->getColor().g, this->getColor().b, this->getColor().a);
 
     SDL_Rect rec = {this->startingCords.x - window.offsetCords.x,

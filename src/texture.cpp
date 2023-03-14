@@ -59,9 +59,6 @@ bool Texture::loadFromFile(Window &window, std::string path)
     width = new_surface->w;
     height = new_surface->h;
 
-    std::cout << "Height = " << height << std::endl;
-    std::cout << "Width = " << width << std::endl;
-
     /*Free up the surface*/
     SDL_FreeSurface(new_surface);
 

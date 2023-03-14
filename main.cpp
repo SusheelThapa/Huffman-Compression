@@ -2,7 +2,6 @@
 
 int main(int argc, char *argv[])
 {
-
 	Huffman a;
 
 	/*Running the app till window is not closed*/
@@ -14,9 +13,9 @@ int main(int argc, char *argv[])
 		/*Clear the window with provide color*/
 		a.window.clear({0, 0, 0, 0});
 
-		/*Render the button in the window*/
-		a.randomize.render(a.window);
-		a.count.render(a.window);
+		a.randomize.render(a.window, 550 - a.window.offsetCords.x, 100 - a.window.offsetCords.y);
+
+		a.count.render(a.window, 1280 - a.window.offsetCords.x, 100 - a.window.offsetCords.y);
 
 		/*Updating the window*/
 		a.window.present();

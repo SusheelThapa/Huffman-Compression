@@ -10,7 +10,10 @@ Count button:
 Position: X: 583 px Y:71 px
 
 Build button: 228x146 px
-Position: X:1107 px Y: 27 px
+Position: X:1167 px Y: 27 px
+
+Encode button: 255 x 90 px
+Position: X: 866 px Y: 71 px
 
 Rectangle background: 1140 x 1024 px
 X: 0 px Y: 0 px

@@ -38,7 +38,7 @@ public:
 
     void displayHuffmanTree();
 
-    void encode(Node *node, std::string encodedText);
+    void generateHuffmanCode(Node *node, std::string encodedText);
 
     void encodeString();
 private:

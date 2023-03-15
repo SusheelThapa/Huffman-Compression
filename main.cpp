@@ -5,11 +5,6 @@ int main(int argc, char *argv[])
 
 	Huffman a(10000);
 
-	a.pq.display();
-	a.displayHuffmanTree();
-	a.pq.display();
-	a.encodeString();
-
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())
 	{

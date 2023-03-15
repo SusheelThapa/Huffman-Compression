@@ -24,8 +24,9 @@ Huffman::Huffman(int len)
     pq = createPriorityQueue(fMap);
     huffmanTreeRootNode = createHuffmanTree();
 
-    std::cout << "Encoding" << std::endl;
-    encode(huffmanTreeRootNode, "");
+    generateHuffmanCode(huffmanTreeRootNode, "");
+
+    encodeString();
 }
 
 void Huffman::handleEvent()
@@ -160,7 +161,7 @@ void Huffman::displayHuffmanTree()
     }
 }
 
-void Huffman::encode(Node *node, std::string encodedText)
+void Huffman::generateHuffmanCode(Node *node, std::string encodedText)
 {
     if (node == nullptr)
     {
@@ -170,17 +171,16 @@ void Huffman::encode(Node *node, std::string encodedText)
     if (node->getKey() != " ")
     {
         pq.setHuffmanCode(node->getKey(), encodedText);
-        std::cout << node->getKey() << "   " << encodedText << std::endl;
     }
 
     if (node->getLeftChild())
     {
-        encode(node->getLeftChild(), encodedText + "0");
+        generateHuffmanCode(node->getLeftChild(), encodedText + "0");
     }
 
     if (node->getRightChild())
     {
-        encode(node->getRightChild(), encodedText + "1");
+        generateHuffmanCode(node->getRightChild(), encodedText + "1");
     }
 }
 

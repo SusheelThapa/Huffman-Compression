@@ -127,7 +127,7 @@ void Texture::render(Window &window, int x, int y,
 
     /*Render the texture in the in window in the specified place*/
 
-    SDL_Rect renderQuad = {x, y, width, height};
+    SDL_Rect renderQuad = {x-window.offsetCords.x, y-window.offsetCords.y, width, height};
     if (render_rect != nullptr)
     {
         renderQuad.w = render_rect->w;

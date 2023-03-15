@@ -14,13 +14,13 @@ private:
 
     int height;
 
-private:
-    void free();
-
 public:
     // public functions
 
     Texture();
+
+    void free();
+    
 
 #if defined SDL_IMAGE_MAJOR_VERSION
 

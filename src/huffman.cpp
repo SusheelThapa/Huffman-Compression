@@ -23,6 +23,10 @@ Huffman::Huffman(int len)
 
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
+    huffmanTreeRootNode = createHuffmanTree();
+
+    std::cout << "Encoding" << std::endl;
+    encode(huffmanTreeRootNode, "");
 }
 
 void Huffman::handleEvent()
@@ -72,7 +76,7 @@ std::string Huffman::generateRandomText(int len)
     s.reserve(len);
 
     while (len--)
-        s += alphanum[rand() % alphanum.size() - 1];
+        s += alphanum[rand() % (alphanum.size() - 1)];
     return s;
 }
 
@@ -97,6 +101,86 @@ PriorityQueue Huffman::createPriorityQueue(std::unordered_map<std::string, int> 
     {
         pq.push(it->first, it->second);
     }
-    
+
     return pq;
 }
+
+Node *Huffman::createHuffmanTree()
+{
+    // Creating copy of the priority queue we have created
+    PriorityQueue cpq = pq;
+
+    // Generation of Huffman Tree
+    Node *nodeOne;
+    Node *nodeTwo;
+
+    while (1)
+    {
+        nodeOne = cpq.pop();
+        nodeTwo = cpq.pop();
+
+        if (nodeTwo == nullptr)
+        {
+            cpq.push(nodeOne->getKey(), nodeOne->getPriority(), nodeOne->getLeftChild(), nodeOne->getRightChild());
+            break;
+        }
+
+        cpq.push(" ", nodeOne->getPriority() + nodeTwo->getPriority(), nodeOne, nodeTwo);
+    }
+
+    return cpq.pop();
+}
+
+void Huffman::displayHuffmanTree()
+{
+
+    std::cout << "Preorder Traversal" << std::endl;
+    Stack<Node *> S;
+
+    Node *root = huffmanTreeRootNode;
+
+    while (true)
+    {
+        cout << root->getKey() << " " << root->getPriority() << std::endl;
+        if (root->getRightChild())
+        {
+            S.push(root->getRightChild());
+        };
+        if (root->getLeftChild())
+        {
+            S.push(root->getLeftChild());
+        }
+
+        root = S.pop();
+
+        if (root == nullptr)
+        {
+            break;
+        }
+    }
+}
+
+void Huffman::encode(Node *node, std::string encodedText)
+{
+    if (node == nullptr)
+    {
+        return;
+    }
+
+    if (node->getKey() != " ")
+    {
+        pq.setHuffmanCode(node->getKey(), encodedText);
+        std::cout << node->getKey() << "   " << encodedText << std::endl;
+    }
+
+    if (node->getLeftChild())
+    {
+        encode(node->getLeftChild(), encodedText + "0");
+    }
+
+    if (node->getRightChild())
+    {
+        encode(node->getRightChild(), encodedText + "1");
+    }
+}
+

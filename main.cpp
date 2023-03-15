@@ -2,7 +2,11 @@
 
 int main(int argc, char *argv[])
 {
+
 	Huffman a(2800);
+	a.pq.display();
+	a.displayHuffmanTree();
+	a.pq.display();
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())

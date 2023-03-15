@@ -1,24 +1,34 @@
 #include "queue.hpp"
 
-PriorityQueue::PriorityQueue() {front = NULL;}
+PriorityQueue::PriorityQueue() { front = NULL; }
 
-PriorityQueue::PriorityQueue(const PriorityQueue& other)
+PriorityQueue::PriorityQueue(const PriorityQueue &other)
 {
-    front = new Node;
+    front = nullptr;
     if (other.front == NULL)
     {
-        front = NULL;
+        return;
     }
     else
     {
-        *front = *other.front;
+        Node *q;
+        q = other.front;
+
+        while (q != NULL)
+        {
+            push(q->getKey(), q->getPriority());
+            q = q->link;
+        }
     }
 }
 
-void PriorityQueue::push(std::string key, int priority)
+void PriorityQueue::push(std::string key, int priority, Node *leftChild, Node *rightChild)
 {
     Node *tmp, *q;
     tmp = new Node(key, priority);
+
+    tmp->rightChild = rightChild;
+    tmp->leftChild = leftChild;
 
     // Insert at head
     if (front == NULL || priority < front->priority)
@@ -40,17 +50,23 @@ void PriorityQueue::push(std::string key, int priority)
     }
 }
 
-void PriorityQueue::pop()
+Node *PriorityQueue::pop()
 {
+
+    Node *popedNode = nullptr;
+
     if (front == NULL)
     {
         std::cout << "Queue Underflow\n";
     }
-
     else
     {
+        popedNode = front;
+
         front = front->link;
     }
+
+    return popedNode;
 }
 
 void PriorityQueue::display()
@@ -66,7 +82,7 @@ void PriorityQueue::display()
         std::cout << "Item\tPriority\n";
         while (ptr != NULL)
         {
-            std::cout << ptr->getKey() << '\t' << ptr->getPriority() << std::endl;
+            std::cout << ptr->getKey() << '\t' << ptr->getPriority() << '\t' << ptr->getEncodingValue() << std::endl;
             ptr = ptr->link;
         }
     }

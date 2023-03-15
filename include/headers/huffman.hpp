@@ -2,6 +2,8 @@
 #include "texture.hpp"
 #include "queue.hpp"
 #include "rectangle.hpp"
+#include "stack.hpp"
+
 
 #include <unordered_map>
 
@@ -19,10 +21,10 @@ public:
     Window window;
     Texture randomizeButton, countButton, buildButton, encodeButton;
     Rectangle randomizeBox, countBox;
-
     Text randomizeText;
 
     PriorityQueue pq;
+    Node *huffmanTreeRootNode;
 
 public:
     Huffman();
@@ -30,6 +32,12 @@ public:
     Huffman(int count);
 
     void handleEvent();
+
+    Node *createHuffmanTree();
+
+    void displayHuffmanTree();
+
+    void encode(Node *node, std::string encodedText);
 
 private:
     // Generates a random string of 'count' characters
@@ -40,4 +48,6 @@ private:
 
     // Creates priority queue from the hashmap
     PriorityQueue createPriorityQueue(std::unordered_map<std::string, int> fMap);
+
+    // Creates Huffman Tree from the priority queue
 };

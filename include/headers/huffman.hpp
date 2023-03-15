@@ -28,25 +28,18 @@ public:
     Node *huffmanTreeRootNode;
 
     // Const Required for Tree Display
-    int treeWidth = 20 * pow(2, 4);
+    int treeWidth;
 
 public:
     int depthOfHuffmanTree = 0;
+
     Huffman();
 
     Huffman(int count);
 
     void handleEvent();
 
-    Node *createHuffmanTree();
-
-    void displayHuffmanTree();
-
-    void generateHuffmanCode(Node *node, std::string encodedText, SDL_Point, int);
-
-    void encodeString();
-
-    void renderHuffmanTree();
+    void render();
 
 private:
     // Generates a random string of 'count' characters
@@ -59,4 +52,14 @@ private:
     PriorityQueue createPriorityQueue(std::unordered_map<std::string, int> fMap);
 
     // Creates Huffman Tree from the priority queue
+    void renderHuffmanTree();
+
+    Node *createHuffmanTree();
+
+    void displayHuffmanTree();
+    int findDepthOfHuffmanTree(Node *);
+
+    void generateHuffmanCode(Node *node, std::string encodedText, SDL_Point, int);
+
+    void encodeString();
 };

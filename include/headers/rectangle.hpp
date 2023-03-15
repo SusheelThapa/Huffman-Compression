@@ -1,11 +1,13 @@
 #pragma once
 
 #include "window.hpp"
+#include "text.hpp"
+#include "queue.hpp"
 
 class Rectangle
 {
-private:
-    SDL_Color color = {255, 255, 255, 255};
+protected:
+    SDL_Color color = {50, 50, 50, 255};
     SDL_Point startingCords;
     int width, height;
 
@@ -17,9 +19,24 @@ public:
     void setWidth(int width);
     void setStartingCords(SDL_Point startingCords);
 
-    void setColor(int r, int g, int b, int a);
+    void setColor(SDL_Color color);
 
     SDL_Color getColor();
 
     void render(Window &window);
 };
+
+// class randomizeRectangle : protected Rectangle
+// {       
+
+// };
+
+// class countRectangle : protected Rectangle
+// {
+
+// };
+
+// class encodeRectangle : protected Rectangle
+// {
+
+// };

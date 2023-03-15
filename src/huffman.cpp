@@ -62,7 +62,7 @@ std::string Huffman::generateRandomText(int len)
     s.reserve(len);
 
     while (len--)
-        s += alphanum[rand() % alphanum.size() - 1];
+        s += alphanum[rand() % (alphanum.size() - 1)];
     return s;
 }
 
@@ -93,26 +93,25 @@ PriorityQueue Huffman::createPriorityQueue(std::unordered_map<std::string, int> 
 
 void Huffman::createHuffmanTree()
 {
+    // Creating copy of the priority queue we have created
+    PriorityQueue cpq = pq;
 
+    // Generation of Huffman Tree
     Node *nodeOne;
     Node *nodeTwo;
 
     while (1)
     {
-        nodeOne = pq.pop();
-        nodeTwo = pq.pop();
+        nodeOne = cpq.pop();
+        nodeTwo = cpq.pop();
 
         if (nodeTwo == nullptr)
         {
-            std::cout << "There is only one node in priority queueu" << std::endl;
-
-            pq.push(nodeOne->getKey(), nodeOne->getPriority(), nodeOne->getLeftChild(), nodeOne->getRightChild());
+            cpq.push(nodeOne->getKey(), nodeOne->getPriority(), nodeOne->getLeftChild(), nodeOne->getRightChild());
             break;
         }
 
-        pq.push("Susheel", nodeOne->getPriority() + nodeTwo->getPriority(), nodeOne, nodeTwo);
-        std::cout << "susheel"
-                  << "  " << nodeOne->getPriority() + nodeTwo->getPriority() << std::endl;
+        cpq.push(" ", nodeOne->getPriority() + nodeTwo->getPriority(), nodeOne, nodeTwo);
     }
 }
 

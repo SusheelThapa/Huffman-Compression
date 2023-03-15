@@ -18,7 +18,7 @@ Huffman::Huffman(int len)
 
     randomText = generateRandomText(len);
 
-    randomizeText = Text(randomText, {100, 220}, {255, 255, 255, 255});
+    randomizeText = Text(randomText, {100, 220}, {rand() % 255, rand() % 255, rand() % 255, 255}, 20);
 
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
@@ -233,7 +233,7 @@ void Huffman::renderHuffmanTree()
         nodeValue = new Text(
             root->getKey(),
             pq.getRenderPosition(root->getKey()),
-            {rand() % 255, rand() % 255, rand() % 255, 255});
+            {rand() % 255, rand() % 255, rand() % 255, 255}, 20);
 
         nodeValue->render(window);
 

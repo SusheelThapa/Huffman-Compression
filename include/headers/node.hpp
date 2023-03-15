@@ -3,9 +3,10 @@
 class Node
 {
 private:
-    std::string key; // Acts as character
-    int priority;    // Acts as frequency
-    Node *link;      // Points to next node
+    std::string key;           // Acts as character
+    int priority;              // Acts as frequency
+    std::string encodingValue; // Value used while encoding
+    Node *link;                // Points to next node
 
     Node *leftChild;  // Points to Left Child
     Node *rightChild; // Points to right child
@@ -22,7 +23,11 @@ public:
 
     int getPriority();
 
+    std::string setEncodingValue(std::string value);
+    std::string getEncodingValue();
+
     Node *getLeftChild() { return leftChild; }
     Node *getRightChild() { return rightChild; }
+
     friend class PriorityQueue;
 };

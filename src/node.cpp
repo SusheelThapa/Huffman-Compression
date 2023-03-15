@@ -5,12 +5,14 @@ Node::Node()
     link = NULL;
     leftChild = nullptr;
     rightChild = nullptr;
+    encodingValue = "";
 }
 
 Node::Node(std::string key, int priority)
 {
     this->key = key;
     this->priority = priority;
+    encodingValue = "";
     leftChild = nullptr;
     rightChild = nullptr;
 }
@@ -40,4 +42,14 @@ std::string Node::getKey()
 int Node::getPriority()
 {
     return priority;
+}
+
+std::string Node::setEncodingValue(std::string value)
+{
+    encodingValue = value;
+}
+
+std::string Node::getEncodingValue()
+{
+    return encodingValue;
 }

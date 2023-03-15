@@ -146,3 +146,39 @@ void Huffman::displayHuffmanTree()
         }
     }
 }
+
+void Huffman::encode(Node *node, std::string encodedText)
+{
+    if (node == nullptr)
+    {
+        return;
+    }
+
+    if (node->getKey() != " ")
+    {
+        node->setEncodingValue(encodedText);
+    }
+
+    if (node->getLeftChild())
+    {
+        encode(node->getLeftChild(), encodedText + "0");
+    }
+
+    if (node->getRightChild())
+    {
+        encode(node->getRightChild(), encodedText + "1");
+    }
+}
+
+// void preOrderTraversalRecursive(TreeNode *Root)
+// {
+//     "Recursive Approach of Preorder Traversal";
+
+//     if (Root == nullptr)
+//     {
+//     return;
+//     }
+//     cout << Root->getData() << " ";
+//     preOrderTraversalRecursive(Root->getLeftNode());
+//     preOrderTraversalRecursive(Root->getRightNode());
+// }

@@ -12,7 +12,7 @@ public:
 
     PriorityQueue(const PriorityQueue &pq);
 
-    void push(std::string key, int priority);
+    void push(std::string key, int priority, Node *leftChild = nullptr, Node *rightChild = nullptr);
 
     Node *pop();
 

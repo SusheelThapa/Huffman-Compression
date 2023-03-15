@@ -15,11 +15,14 @@ PriorityQueue::PriorityQueue(const PriorityQueue &other)
     }
 }
 
-void PriorityQueue::push(std::string key, int priority)
+void PriorityQueue::push(std::string key, int priority, Node *leftChild, Node *rightChild)
 {
     Node *tmp, *q;
     tmp = new Node(key, priority);
 
+    tmp->rightChild = rightChild;
+    tmp->leftChild = leftChild;
+    
     // Insert at head
     if (front == NULL || priority < front->priority)
     {

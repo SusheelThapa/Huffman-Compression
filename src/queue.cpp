@@ -4,14 +4,21 @@ PriorityQueue::PriorityQueue() { front = NULL; }
 
 PriorityQueue::PriorityQueue(const PriorityQueue &other)
 {
-    front = new Node;
+    front = nullptr;
     if (other.front == NULL)
     {
-        front = NULL;
+        return;
     }
     else
     {
-        *front = *other.front;
+        Node *q;
+        q = other.front;
+
+        while (q != NULL)
+        {
+            push(q->getKey(), q->getPriority());
+            q = q->link;
+        }
     }
 }
 
@@ -22,7 +29,7 @@ void PriorityQueue::push(std::string key, int priority, Node *leftChild, Node *r
 
     tmp->rightChild = rightChild;
     tmp->leftChild = leftChild;
-    
+
     // Insert at head
     if (front == NULL || priority < front->priority)
     {

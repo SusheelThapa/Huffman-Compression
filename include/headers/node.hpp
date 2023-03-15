@@ -11,6 +11,8 @@ private:
     Node *leftChild;  // Points to Left Child
     Node *rightChild; // Points to right child
 
+    SDL_Point renderPosition;
+
 public:
     Node();
 
@@ -28,6 +30,9 @@ public:
 
     Node *getLeftChild() { return leftChild; }
     Node *getRightChild() { return rightChild; }
+
+    void setRenderPosition(SDL_Point position);
+    SDL_Point getRenderPosition();
 
     friend class PriorityQueue;
 };

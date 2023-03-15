@@ -2,14 +2,10 @@
 
 int main(int argc, char *argv[])
 {
-	Huffman a(30);
+	Huffman a(10);
 	a.pq.display();
-
-	PriorityQueue cpq(a.pq);
-	a.createHuffmanTree();
 	a.displayHuffmanTree();
 	a.pq.display();
-	cpq.display();
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())

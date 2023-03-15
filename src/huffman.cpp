@@ -14,6 +14,9 @@ Huffman::Huffman(int len)
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
     huffmanTreeRootNode = createHuffmanTree();
+
+    std::cout << "Encoding" << std::endl;
+    encode(huffmanTreeRootNode, "");
 }
 
 void Huffman::handleEvent()
@@ -156,7 +159,8 @@ void Huffman::encode(Node *node, std::string encodedText)
 
     if (node->getKey() != " ")
     {
-        node->setEncodingValue(encodedText);
+        pq.setHuffmanCode(node->getKey(), encodedText);
+        std::cout << node->getKey() << "   " << encodedText << std::endl;
     }
 
     if (node->getLeftChild())
@@ -170,15 +174,3 @@ void Huffman::encode(Node *node, std::string encodedText)
     }
 }
 
-// void preOrderTraversalRecursive(TreeNode *Root)
-// {
-//     "Recursive Approach of Preorder Traversal";
-
-//     if (Root == nullptr)
-//     {
-//     return;
-//     }
-//     cout << Root->getData() << " ";
-//     preOrderTraversalRecursive(Root->getLeftNode());
-//     preOrderTraversalRecursive(Root->getRightNode());
-// }

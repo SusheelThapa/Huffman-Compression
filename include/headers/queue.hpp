@@ -23,4 +23,16 @@ public:
     int size();
 
     bool empty();
+
+    void setHuffmanCode(std::string key, std::string encodingString)
+    {
+        Node *ptr = front;
+
+        while(ptr->getKey() != key)
+        {
+            ptr->setEncodingValue(encodingString);
+            ptr = ptr->link;
+        }
+        ptr->setEncodingValue(encodingString);
+    }
 };

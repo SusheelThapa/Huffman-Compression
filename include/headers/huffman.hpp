@@ -3,6 +3,8 @@
 #include "button.old.hpp"
 #include "queue.hpp"
 
+#include <unordered_map>
+
 class Huffman
 {
 
@@ -10,55 +12,28 @@ private:
     SDL_Point clickedPosition;
     SDL_Event e;
 
+    std::string randomText;
+    std::unordered_map<std::string, int> fMap;
+
 public:
     Window window;
-
-    /*Texture to represent buttons in the program*/
     Texture randomize, count;
+    PriorityQueue pq;
 
-    Huffman()
-    {
-       randomize.loadFromFile(window, "resources/DesignedElements/Randomizebutton.png");
-       count.loadFromFile(window, "resources/DesignedElements/CountButton.png");
-    }
+public:
+    Huffman();
 
-    void handleEvent()
-    {
-        while (SDL_PollEvent(&this->e) != 0)
-        {
-            // *Yo section ma Scroll event handle huncah hai ra
+    Huffman(int count);
 
-            if (e.type == SDL_QUIT ||
-                e.type == SDL_MOUSEMOTION ||
-                e.type == SDL_MOUSEBUTTONDOWN ||
-                e.type == SDL_MOUSEBUTTONUP)
-            {
-                window.handleEvent(e);
-            }
+    void handleEvent();
 
-            // * Aba malai yo section ma button click handle garna xa
+private:
+    // Generates a random string of 'count' characters
+    std::string generateRandomText(int count);
 
-            if (e.type == SDL_MOUSEBUTTONDOWN)
-            {
-                SDL_GetMouseState(&clickedPosition.x, &clickedPosition.y);
-            }
+    // Creates and renders the hashmap of keys along with their frequencies
+    std::unordered_map<std::string, int> Hashmap(std::string randomText);
 
-            if (e.type == SDL_MOUSEBUTTONUP)
-            {
-                SDL_Point currentClickedPosition;
-
-                SDL_GetMouseState(&currentClickedPosition.x, &currentClickedPosition.y);
-
-                if (currentClickedPosition.x == clickedPosition.x && currentClickedPosition.y == clickedPosition.y)
-                {
-
-                    std::cout << "Button is clicked";
-
-                    /**
-                     * TODO: Logic to identify which button is clicked
-                     */
-                }
-            }
-        }
-    }
+    // Creates priority queue from the hashmap
+    PriorityQueue createPriorityQueue(std::unordered_map<std::string, int> fMap);
 };

@@ -1,8 +1,13 @@
 #include "huffman.hpp"
 
+
 int main(int argc, char *argv[])
 {
-	Huffman a;
+	Huffman a(30);
+	
+	srand(3);
+
+	a.pq.display();
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())

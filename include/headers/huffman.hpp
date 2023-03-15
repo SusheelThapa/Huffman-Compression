@@ -32,6 +32,8 @@ public:
 
     void displayHuffmanTree();
 
+    void encode(Node *node, std::string encodedText);
+
 private:
     // Generates a random string of 'count' characters
     std::string generateRandomText(int count);

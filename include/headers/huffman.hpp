@@ -27,6 +27,8 @@ public:
 
     void handleEvent();
 
+    void createHuffmanTree();
+
 private:
     // Generates a random string of 'count' characters
     std::string generateRandomText(int count);
@@ -36,4 +38,6 @@ private:
 
     // Creates priority queue from the hashmap
     PriorityQueue createPriorityQueue(std::unordered_map<std::string, int> fMap);
+
+    // Creates Huffman Tree from the priority queue
 };

@@ -43,13 +43,12 @@ void PriorityQueue::push(std::string key, int priority)
 Node *PriorityQueue::pop()
 {
 
-    Node *popedNode;
+    Node *popedNode = nullptr;
 
     if (front == NULL)
     {
         std::cout << "Queue Underflow\n";
     }
-
     else
     {
         popedNode = front;

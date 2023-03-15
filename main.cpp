@@ -3,7 +3,8 @@
 int main(int argc, char *argv[])
 {
 	Huffman a(30);
-
+	a.pq.display();
+	a.createHuffmanTree();
 	a.pq.display();
 
 	/*Running the app till window is not closed*/

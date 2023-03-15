@@ -87,6 +87,28 @@ PriorityQueue Huffman::createPriorityQueue(std::unordered_map<std::string, int> 
     {
         pq.push(it->first, it->second);
     }
-    
+
     return pq;
+}
+
+void Huffman::createHuffmanTree()
+{
+    Node *nodeOne;
+    Node *nodeTwo;
+
+    while (1)
+    {
+        nodeOne = pq.pop();
+        nodeTwo = pq.pop();
+
+        if (nodeTwo == nullptr)
+        {
+            std::cout << "There is only one node in priority queueu" << std::endl;
+
+            pq.push(nodeOne->getKey(), nodeOne->getPriority());
+            break;
+        }
+
+        pq.push("Susheel", nodeOne->getPriority() + nodeTwo->getPriority());
+    }
 }

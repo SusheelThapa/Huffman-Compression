@@ -34,7 +34,7 @@ public:
 
     SDL_Point offsetCords = {0, 0};
 
-    static const int worldWidth = 2560 * 2;
+    static const int worldWidth = 2560 * 5;
 
     static const int worldHeight = 1600 * 2;
 

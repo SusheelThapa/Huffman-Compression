@@ -3,7 +3,8 @@
 int main(int argc, char *argv[])
 {
 
-	Huffman a(10000);
+	Huffman a(20);
+	a.pq.display();
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())
@@ -16,7 +17,7 @@ int main(int argc, char *argv[])
 
 		a.randomizeButton.render(a.window, 400, 71);
 
-		a.randomizeBox.render(a.window);
+		// a.randomizeBox.render(a.window);
 		a.randomizeText.render(a.window);
 
 		a.countButton.render(a.window, 1000, 71);
@@ -24,11 +25,15 @@ int main(int argc, char *argv[])
 		// Appears after countButton is pressed
 		a.countBox.render(a.window);
 
+		a.renderHuffmanTree();
+
 		/*Updating the window*/
 		a.window.present();
 
 		a.randomizeText.free();
 	}
+
+	std::cout << "Depth of the tree is " << a.depthOfHuffmanTree << std::endl;
 
 	return 0;
 }

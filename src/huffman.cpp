@@ -24,7 +24,7 @@ Huffman::Huffman(int len)
     pq = createPriorityQueue(fMap);
     huffmanTreeRootNode = createHuffmanTree();
 
-    generateHuffmanCode(huffmanTreeRootNode, "");
+    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + (treeWidth / 2), 200}, treeWidth);
 
     encodeString();
 }
@@ -48,6 +48,8 @@ void Huffman::handleEvent()
         if (e.type == SDL_MOUSEBUTTONDOWN)
         {
             SDL_GetMouseState(&clickedPosition.x, &clickedPosition.y);
+
+            std::cout << clickedPosition.x << " " << clickedPosition.y << std::endl;
         }
 
         if (e.type == SDL_MOUSEBUTTONUP)
@@ -71,13 +73,14 @@ void Huffman::handleEvent()
 
 std::string Huffman::generateRandomText(int len)
 {
-    std::string alphanum = "!#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}";
+    std::string alphanum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // std::string alphanum = "1xb2";
     std::string s;
     s.reserve(len);
 
     while (len--)
         s += alphanum[rand() % (alphanum.size() - 1)];
-    std::cout << s << std::endl;
+    // std::cout << s << std::endl;
     return s;
 }
 
@@ -134,7 +137,6 @@ Node *Huffman::createHuffmanTree()
 
 void Huffman::displayHuffmanTree()
 {
-
     std::cout << "Preorder Traversal" << std::endl;
     Stack<Node *> S;
 
@@ -151,7 +153,7 @@ void Huffman::displayHuffmanTree()
         {
             S.push(root->getLeftChild());
         }
-
+        pq.getRenderPosition(root->getKey());
         root = S.pop();
 
         if (root == nullptr)
@@ -161,26 +163,38 @@ void Huffman::displayHuffmanTree()
     }
 }
 
-void Huffman::generateHuffmanCode(Node *node, std::string encodedText)
+void Huffman::generateHuffmanCode(Node *node, std::string encodedText, SDL_Point position, int treeWidth)
 {
+
     if (node == nullptr)
     {
         return;
     }
 
+    // Calculating the depth of the Tree
+    if (depthOfHuffmanTree < encodedText.length())
+    {
+        depthOfHuffmanTree = encodedText.length();
+    }
+
+    // Setting the Huffman code for the give Key
     if (node->getKey() != " ")
     {
-        pq.setHuffmanCode(node->getKey(), encodedText);
+        pq.setHuffmanCodeAndRenderPosition(
+            node->getKey(),
+            encodedText, position);
     }
 
+    // Visiting left sub-tree
     if (node->getLeftChild())
     {
-        generateHuffmanCode(node->getLeftChild(), encodedText + "0");
+        generateHuffmanCode(node->getLeftChild(), encodedText + "0", {position.x - treeWidth / 2, position.y + 50}, treeWidth / 2);
     }
 
+    // Visiting right sub tree
     if (node->getRightChild())
     {
-        generateHuffmanCode(node->getRightChild(), encodedText + "1");
+        generateHuffmanCode(node->getRightChild(), encodedText + "1", {position.x + treeWidth / 2, position.y + 50}, treeWidth / 2);
     }
 }
 
@@ -197,5 +211,48 @@ void Huffman::encodeString()
         encodedText += pq.getHuffmanCode(temp);
     }
 
-    std::cout << encodedText << std::endl;
+    // std::cout << encodedText << std::endl;
+}
+
+void Huffman::renderHuffmanTree()
+{
+    // The Tree will be started to render after 730,205
+
+    // The width of the tree will be 300 * 2^ height of tree
+
+    // Distance between two node will be 300 height wise
+
+    Stack<Node *> S;
+    Node *root = huffmanTreeRootNode;
+
+    Text *nodeValue;
+    while (true)
+    {
+        // std::cout << pq.getRenderPosition(root->getKey()).x << " " << pq.getRenderPosition(root->getKey()).y << std::endl;
+
+        nodeValue = new Text(
+            root->getKey(),
+            pq.getRenderPosition(root->getKey()),
+            {rand() % 255, rand() % 255, rand() % 255, 255});
+
+        nodeValue->render(window);
+
+        if (root->getRightChild())
+        {
+            S.push(root->getRightChild());
+        }
+        if (root->getLeftChild())
+        {
+            S.push(root->getLeftChild());
+        }
+
+        root = S.pop();
+
+        if (root == nullptr)
+        {
+            break;
+        }
+
+        nodeValue->free();
+    }
 }

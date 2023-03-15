@@ -22,12 +22,16 @@ public:
     Rectangle randomizeBox, countBox;
     Text randomizeText;
 
-    std::string encodedText ="";
+    std::string encodedText = "";
 
     PriorityQueue pq;
     Node *huffmanTreeRootNode;
 
+    // Const Required for Tree Display
+    int treeWidth = 20 * pow(2, 4);
+
 public:
+    int depthOfHuffmanTree = 0;
     Huffman();
 
     Huffman(int count);
@@ -38,9 +42,12 @@ public:
 
     void displayHuffmanTree();
 
-    void generateHuffmanCode(Node *node, std::string encodedText);
+    void generateHuffmanCode(Node *node, std::string encodedText, SDL_Point, int);
 
     void encodeString();
+
+    void renderHuffmanTree();
+
 private:
     // Generates a random string of 'count' characters
     std::string generateRandomText(int count);

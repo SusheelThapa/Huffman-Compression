@@ -20,6 +20,7 @@ public:
     Window window;
     Texture randomize, count;
     PriorityQueue pq;
+    Node *huffmanTreeRootNode;
 
 public:
     Huffman();
@@ -28,7 +29,7 @@ public:
 
     void handleEvent();
 
-    void createHuffmanTree();
+    Node *createHuffmanTree();
 
     void displayHuffmanTree();
 

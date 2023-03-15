@@ -13,6 +13,7 @@ Huffman::Huffman(int len)
     randomText = generateRandomText(len);
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
+    huffmanTreeRootNode = createHuffmanTree();
 }
 
 void Huffman::handleEvent()
@@ -91,7 +92,7 @@ PriorityQueue Huffman::createPriorityQueue(std::unordered_map<std::string, int> 
     return pq;
 }
 
-void Huffman::createHuffmanTree()
+Node *Huffman::createHuffmanTree()
 {
     // Creating copy of the priority queue we have created
     PriorityQueue cpq = pq;
@@ -113,6 +114,8 @@ void Huffman::createHuffmanTree()
 
         cpq.push(" ", nodeOne->getPriority() + nodeTwo->getPriority(), nodeOne, nodeTwo);
     }
+
+    return cpq.pop();
 }
 
 void Huffman::displayHuffmanTree()
@@ -121,7 +124,7 @@ void Huffman::displayHuffmanTree()
     std::cout << "Preorder Traversal" << std::endl;
     Stack<Node *> S;
 
-    Node *root = pq.pop();
+    Node *root = huffmanTreeRootNode;
 
     while (true)
     {

@@ -22,7 +22,7 @@ void PriorityQueue::push(std::string key, int priority, Node *leftChild, Node *r
 
     tmp->rightChild = rightChild;
     tmp->leftChild = leftChild;
-    
+
     // Insert at head
     if (front == NULL || priority < front->priority)
     {
@@ -75,7 +75,7 @@ void PriorityQueue::display()
         std::cout << "Item\tPriority\n";
         while (ptr != NULL)
         {
-            std::cout << ptr->getKey() << '\t' << ptr->getPriority() << std::endl;
+            std::cout << ptr->getKey() << '\t' << ptr->getPriority() << '\t' << ptr->getEncodingValue() << std::endl;
             ptr = ptr->link;
         }
     }

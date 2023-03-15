@@ -13,13 +13,12 @@ Huffman::Huffman(int len)
     buildButton.loadFromFile(window, "resources/DesignedElements/BuildButton.png");
     encodeButton.loadFromFile(window, "resources/DesignedElements/EncodeButton.png");
 
-
     randomizeBox = Rectangle({77, 203}, 800, 400);
     countBox = Rectangle({1000, 203}, 300, 700);
 
     randomText = generateRandomText(len);
 
-	randomizeText = Text(randomText, {100, 220}, {255, 255, 255, 255});
+    randomizeText = Text(randomText, {100, 220}, {255, 255, 255, 255});
 
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
@@ -71,12 +70,13 @@ void Huffman::handleEvent()
 
 std::string Huffman::generateRandomText(int len)
 {
-    std::string alphanum = "016789ABRSXYZaeflmn!@#$>`~.";
+    std::string alphanum = "!#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}";
     std::string s;
     s.reserve(len);
 
     while (len--)
         s += alphanum[rand() % (alphanum.size() - 1)];
+    std::cout << s << std::endl;
     return s;
 }
 
@@ -183,4 +183,3 @@ void Huffman::encode(Node *node, std::string encodedText)
         encode(node->getRightChild(), encodedText + "1");
     }
 }
-

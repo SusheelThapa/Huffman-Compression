@@ -14,13 +14,12 @@ private:
 
     int height;
 
+
 public:
     // public functions
 
     Texture();
-
     void free();
-    
 
 #if defined SDL_IMAGE_MAJOR_VERSION
 
@@ -52,5 +51,5 @@ public:
 
     int getHeight();
 
-    void render(Window &window, int x, int y, SDL_Rect *render_rect = NULL, double angle = 0.0, SDL_Point *center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    void render(Window &window, int x, int y, SDL_Rect *src_rect = NULL, SDL_Rect *dst_rect = NULL);
 };

@@ -71,7 +71,7 @@ bool Texture::loadFromFile(Window &window, std::string path)
 bool Texture::loadFromText(Window &window, TTF_Font *font, std::string text, SDL_Color color)
 {
     /*Create a surface outof text provide*/
-    SDL_Surface *temporary_surface = TTF_RenderText_Solid(font, text.c_str(), color);
+    SDL_Surface *temporary_surface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), color, 750);
 
     if (temporary_surface == NULL)
     {
@@ -121,17 +121,13 @@ int Texture::getHeight()
 }
 
 void Texture::render(Window &window, int x, int y,
-                     SDL_Rect *render_rect, double angle,
-                     SDL_Point *center, SDL_RendererFlip flip)
+                     SDL_Rect *src_rect, SDL_Rect *dst_rect)
 {
 
-    /*Render the texture in the in window in the specified place*/
-
-    SDL_Rect renderQuad = {x-window.offsetCords.x, y-window.offsetCords.y, width, height};
-    if (render_rect != nullptr)
+    if (dst_rect == NULL)
     {
-        renderQuad.w = render_rect->w;
-        renderQuad.h = render_rect->h;
+        dst_rect = new SDL_Rect{x-window.offsetCords.x, y - window.offsetCords.y, this->getWidth(), this->getHeight()};
     }
-    SDL_RenderCopyEx(window.renderer, texture, render_rect, &renderQuad, angle, center, flip);
+
+    SDL_RenderCopy(window.renderer, texture, src_rect, dst_rect);
 }

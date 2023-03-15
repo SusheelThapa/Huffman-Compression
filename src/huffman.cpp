@@ -93,6 +93,7 @@ PriorityQueue Huffman::createPriorityQueue(std::unordered_map<std::string, int> 
 
 void Huffman::createHuffmanTree()
 {
+
     Node *nodeOne;
     Node *nodeTwo;
 
@@ -105,10 +106,41 @@ void Huffman::createHuffmanTree()
         {
             std::cout << "There is only one node in priority queueu" << std::endl;
 
-            pq.push(nodeOne->getKey(), nodeOne->getPriority());
+            pq.push(nodeOne->getKey(), nodeOne->getPriority(), nodeOne->getLeftChild(), nodeOne->getRightChild());
             break;
         }
 
-        pq.push("Susheel", nodeOne->getPriority() + nodeTwo->getPriority());
+        pq.push("Susheel", nodeOne->getPriority() + nodeTwo->getPriority(), nodeOne, nodeTwo);
+        std::cout << "susheel"
+                  << "  " << nodeOne->getPriority() + nodeTwo->getPriority() << std::endl;
+    }
+}
+
+void Huffman::displayHuffmanTree()
+{
+
+    std::cout << "Preorder Traversal" << std::endl;
+    Stack<Node *> S;
+
+    Node *root = pq.pop();
+
+    while (true)
+    {
+        cout << root->getKey() << " " << root->getPriority() << std::endl;
+        if (root->getRightChild())
+        {
+            S.push(root->getRightChild());
+        };
+        if (root->getLeftChild())
+        {
+            S.push(root->getLeftChild());
+        }
+
+        root = S.pop();
+
+        if (root == nullptr)
+        {
+            break;
+        }
     }
 }

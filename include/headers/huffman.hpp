@@ -2,6 +2,7 @@
 #include "texture.hpp"
 #include "button.old.hpp"
 #include "queue.hpp"
+#include "stack.hpp"
 
 #include <unordered_map>
 
@@ -28,6 +29,8 @@ public:
     void handleEvent();
 
     void createHuffmanTree();
+
+    void displayHuffmanTree();
 
 private:
     // Generates a random string of 'count' characters

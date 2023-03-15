@@ -2,7 +2,8 @@
 
 int main(int argc, char *argv[])
 {
-	Huffman a(10);
+
+	Huffman a(2800);
 	a.pq.display();
 	a.displayHuffmanTree();
 	a.pq.display();
@@ -16,12 +17,20 @@ int main(int argc, char *argv[])
 		/*Clear the window with provide color*/
 		a.window.clear({0, 0, 0, 0});
 
-		a.randomize.render(a.window, 550 - a.window.offsetCords.x, 100 - a.window.offsetCords.y);
+		a.randomizeButton.render(a.window, 400, 71);
 
-		a.count.render(a.window, 1280 - a.window.offsetCords.x, 100 - a.window.offsetCords.y);
+		a.randomizeBox.render(a.window);
+		a.randomizeText.render(a.window);
+
+		a.countButton.render(a.window, 1000, 71);
+
+		//Appears after countButton is pressed
+		a.countBox.render(a.window);
 
 		/*Updating the window*/
 		a.window.present();
+
+		a.randomizeText.free();
 	}
 
 	return 0;

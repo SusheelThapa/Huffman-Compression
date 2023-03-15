@@ -33,7 +33,7 @@ public:
 
     T insertAtBeginning(T data)
     {
-        Node<T> *newNode = new Node(data);
+        Node<T> *newNode = new Node<T>(data);
 
         newNode->next = head;
         head = newNode;
@@ -44,7 +44,7 @@ public:
     T insertAtEnd(T data)
     {
 
-        Node<T> *newNode = new Node(data);
+        Node<T> *newNode = new Node<T>(data);
 
         if (head == nullptr)
         {
@@ -66,7 +66,7 @@ public:
 
     T insertAfterNthNode(int nthNode, T data)
     {
-        Node<T> *newNode = new Node(data);
+        Node<T> *newNode = new Node<T>(data);
 
         Node<T> *temp = head;
         int count = 1;
@@ -85,7 +85,7 @@ public:
 
     T insertBeforeNthNode(int nthNode, T data)
     {
-        Node<T> *newNode = new Node(data);
+        Node<T> *newNode = new Node<T>(data);
 
         Node<T> *temp = head;
 

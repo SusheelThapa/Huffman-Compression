@@ -20,6 +20,8 @@ public:
     Texture randomizeButton, countButton, buildButton, encodeButton;
     Rectangle randomizeBox, countBox;
 
+    Text randomizeText;
+
     PriorityQueue pq;
 
 public:

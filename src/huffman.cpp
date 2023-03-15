@@ -18,6 +18,9 @@ Huffman::Huffman(int len)
     countBox = Rectangle({1000, 203}, 300, 700);
 
     randomText = generateRandomText(len);
+
+	randomizeText = Text(randomText, {100, 220}, {255, 255, 255, 255});
+
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
 }

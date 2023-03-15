@@ -28,11 +28,22 @@ public:
     {
         Node *ptr = front;
 
-        while(ptr->getKey() != key)
+        while (ptr->getKey() != key)
         {
-            ptr->setEncodingValue(encodingString);
             ptr = ptr->link;
         }
         ptr->setEncodingValue(encodingString);
+    }
+
+    std::string getHuffmanCode(std::string key)
+    {
+
+        Node *ptr = front;
+
+        while (ptr->getKey() != key)
+        {
+            ptr = ptr->link;
+        }
+        return ptr->getEncodingValue();
     }
 };

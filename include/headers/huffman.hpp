@@ -4,7 +4,6 @@
 #include "rectangle.hpp"
 #include "stack.hpp"
 
-
 #include <unordered_map>
 
 class Huffman
@@ -23,6 +22,8 @@ public:
     Rectangle randomizeBox, countBox;
     Text randomizeText;
 
+    std::string encodedText ="";
+
     PriorityQueue pq;
     Node *huffmanTreeRootNode;
 
@@ -37,8 +38,9 @@ public:
 
     void displayHuffmanTree();
 
-    void encode(Node *node, std::string encodedText);
+    void generateHuffmanCode(Node *node, std::string encodedText);
 
+    void encodeString();
 private:
     // Generates a random string of 'count' characters
     std::string generateRandomText(int count);

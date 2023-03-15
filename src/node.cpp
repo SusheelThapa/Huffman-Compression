@@ -11,6 +11,8 @@ Node::Node(std::string key, int priority)
 {
     this->key = key;
     this->priority = priority;
+    leftChild = nullptr;
+    rightChild = nullptr;
 }
 
 Node::Node(const Node &nd)

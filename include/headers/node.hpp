@@ -22,5 +22,7 @@ public:
 
     int getPriority();
 
+    Node *getLeftChild() { return leftChild; }
+    Node *getRightChild() { return rightChild; }
     friend class PriorityQueue;
 };

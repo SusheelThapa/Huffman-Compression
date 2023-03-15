@@ -183,3 +183,19 @@ void Huffman::encode(Node *node, std::string encodedText)
         encode(node->getRightChild(), encodedText + "1");
     }
 }
+
+void Huffman::encodeString()
+{
+
+    encodedText = "";
+    std::string temp = "";
+
+    for (int i = 0; i < randomText.length(); i++)
+    {
+        temp = "";
+        temp += randomText[i];
+        encodedText += pq.getHuffmanCode(temp);
+    }
+
+    std::cout << encodedText << std::endl;
+}

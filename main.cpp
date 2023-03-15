@@ -3,11 +3,12 @@
 int main(int argc, char *argv[])
 {
 
-	Huffman a(2800);
+	Huffman a(10000);
 
 	a.pq.display();
 	a.displayHuffmanTree();
 	a.pq.display();
+	a.encodeString();
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
 
 		a.countButton.render(a.window, 1000, 71);
 
-		//Appears after countButton is pressed
+		// Appears after countButton is pressed
 		a.countBox.render(a.window);
 
 		/*Updating the window*/

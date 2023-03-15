@@ -27,12 +27,9 @@ void Rectangle::setStartingCords(SDL_Point startingCords)
     this->startingCords = startingCords;
 }
 
-void Rectangle::setColor(int r, int g, int b, int a)
+void Rectangle::setColor(SDL_Color color)
 {
-    this->color.r = r;
-    this->color.g = g;
-    this->color.b = b;
-    this->color.a = a;
+    this->color = color;
 }
 
 SDL_Color Rectangle::getColor()

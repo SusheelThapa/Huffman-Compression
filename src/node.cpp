@@ -3,6 +3,8 @@
 Node::Node()
 {
     link = NULL;
+    leftChild = nullptr;
+    rightChild = nullptr;
 }
 
 Node::Node(std::string key, int priority)
@@ -13,6 +15,7 @@ Node::Node(std::string key, int priority)
 
 Node::Node(const Node &nd)
 {
+    // TODO: To update link of left child and right child
     key = nd.key;
     priority = nd.priority;
     link = new Node;
@@ -36,4 +39,3 @@ int Node::getPriority()
 {
     return priority;
 }
-

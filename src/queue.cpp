@@ -1,8 +1,8 @@
 #include "queue.hpp"
 
-PriorityQueue::PriorityQueue() {front = NULL;}
+PriorityQueue::PriorityQueue() { front = NULL; }
 
-PriorityQueue::PriorityQueue(const PriorityQueue& other)
+PriorityQueue::PriorityQueue(const PriorityQueue &other)
 {
     front = new Node;
     if (other.front == NULL)
@@ -40,8 +40,11 @@ void PriorityQueue::push(std::string key, int priority)
     }
 }
 
-void PriorityQueue::pop()
+Node *PriorityQueue::pop()
 {
+
+    Node *popedNode;
+
     if (front == NULL)
     {
         std::cout << "Queue Underflow\n";
@@ -49,8 +52,12 @@ void PriorityQueue::pop()
 
     else
     {
+        popedNode = front;
+
         front = front->link;
     }
+
+    return popedNode;
 }
 
 void PriorityQueue::display()

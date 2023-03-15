@@ -10,11 +10,11 @@ private:
 public:
     PriorityQueue();
 
-    PriorityQueue(const PriorityQueue& pq);
+    PriorityQueue(const PriorityQueue &pq);
 
     void push(std::string key, int priority);
 
-    void pop();
+    Node *pop();
 
     void display();
 
@@ -24,4 +24,3 @@ public:
 
     bool empty();
 };
-

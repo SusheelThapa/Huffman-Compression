@@ -1,28 +1,43 @@
 #include "text.hpp"
 
-Text::Text(Window &window, std::string character, SDL_Color color, int size)
+Text::Text(std::string text, SDL_Point point, SDL_Color color, int size)
 {
-    this->character = character;
-    this->color = color;
-    this->size = size;
+        this->text = text;
+        this->renderCoordinate = point;
+        this->textColor = color;
+        this->size = size;
+}
 
-    this->charFont = TTF_OpenFont("resources/font/Helvetica.ttf", size);
-    characterTexture.loadFromText(window, charFont, character, color);
-    dimensions.x = characterTexture.getWidth();
-    dimensions.y = characterTexture.getHeight();
+Text::~Text()
+{
+    this->textTexture.free();
+    TTF_CloseFont(this->mainFont);
+    mainFont = NULL;
+    
 }
 
 void Text::free()
 {
-    this->characterTexture.free();
+    this->textTexture.free();
+}
+
+void Text::render(Window &window)
+{
+    this->createTextTexture(window, size);
+
+    SDL_SetRenderDrawColor(window.renderer, this->textColor.r, this->textColor.g, this->textColor.b, this->textColor.a);
+    
+    SDL_Rect renderRect = {renderCoordinate.x - window.offsetCords.x , renderCoordinate.y - window.offsetCords.y, dimensions.x, dimensions.y};
+
+    textTexture.render(window, renderCoordinate.x, renderCoordinate.y, NULL, &renderRect);
 }
 
 SDL_Point Text::getCoordinate()
 {
-    return this->characterCoordinates;
+    return this->renderCoordinate;
 }
 
 void Text::setCoordinate(SDL_Point point)
 {
-    this->characterCoordinates = point;
+    this->renderCoordinate = point;
 }

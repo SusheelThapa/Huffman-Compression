@@ -5,25 +5,30 @@
 
 class Text
 {
-    protected:
-        std::string character;
-        SDL_Color color;
-        Texture characterTexture;
-        SDL_Point characterCoordinates;
-        TTF_Font *charFont = NULL;
-        SDL_Point dimensions;  // x-> width, y-> height
-        int size;
-    
-    public:
-        Text() {}
+private:
+    std::string text;
+    SDL_Color textColor;
+    SDL_Point renderCoordinate;
+    SDL_Point dimensions;      // x-> width, y-> height
+    Texture textTexture;
+    TTF_Font *mainFont = NULL;
+    int size;
 
-        Text(Window &window, std::string character, SDL_Color color = {255, 255, 255, 255}, int size = 13);
+    void createTextTexture (Window &window, int size)
+    {
+        mainFont = TTF_OpenFont("resources/font/Helvetica.ttf", size);
+        textTexture.loadFromText(window, mainFont, text, textColor);
+        dimensions.x = textTexture.getWidth();
+        dimensions.y = textTexture.getHeight();
+    }
 
-        void free();
+public:
 
-        SDL_Point getCoordinate();
-
-        void setCoordinate(SDL_Point point);
-
-        void render(Window &window);
+    Text() {}
+    Text(std::string text, SDL_Point point, SDL_Color color, int size=13);
+    ~Text();
+    void free();
+    void render(Window &window);
+    SDL_Point getCoordinate();
+    void setCoordinate(SDL_Point point);
 };

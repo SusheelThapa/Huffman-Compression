@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-	Huffman a(1500);
+	Huffman a(2800);
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())
@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 		a.randomizeButton.render(a.window, 400, 71);
 
 		a.randomizeBox.render(a.window);
+		a.randomizeText.render(a.window);
 
 		a.countButton.render(a.window, 1000, 71);
 
@@ -24,6 +25,8 @@ int main(int argc, char *argv[])
 
 		/*Updating the window*/
 		a.window.present();
+
+		a.randomizeText.free();
 	}
 
 	return 0;

@@ -28,9 +28,8 @@ public:
     {
         Node *ptr = front;
 
-        while(ptr->getKey() != key)
+        while (ptr->getKey() != key)
         {
-            ptr->setEncodingValue(encodingString);
             ptr = ptr->link;
         }
         ptr->setEncodingValue(encodingString);

@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-	Huffman a(10);
+	Huffman a(100000);
 	a.pq.display();
 	a.displayHuffmanTree();
 	a.pq.display();

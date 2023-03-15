@@ -61,7 +61,7 @@ void Huffman::handleEvent()
 
 std::string Huffman::generateRandomText(int len)
 {
-    std::string alphanum = "016789ABRSXYZaeflmn!@#$>`~.";
+    std::string alphanum = "!#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}";
     std::string s;
     s.reserve(len);
 

@@ -2,14 +2,21 @@
 
 Huffman::Huffman()
 {
-    randomize.loadFromFile(window, "resources/DesignedElements/Randomizebutton.png");
-    count.loadFromFile(window, "resources/DesignedElements/CountButton.png");
+    randomizeButton.loadFromFile(window, "resources/DesignedElements/Randomizebutton.png");
+    countButton.loadFromFile(window, "resources/DesignedElements/CountButton.png");
 }
 
 Huffman::Huffman(int len)
 {
-    randomize.loadFromFile(window, "resources/DesignedElements/Randomizebutton.png");
-    count.loadFromFile(window, "resources/DesignedElements/CountButton.png");
+    randomizeButton.loadFromFile(window, "resources/DesignedElements/Randomizebutton.png");
+    countButton.loadFromFile(window, "resources/DesignedElements/CountButton.png");
+    buildButton.loadFromFile(window, "resources/DesignedElements/BuildButton.png");
+    encodeButton.loadFromFile(window, "resources/DesignedElements/EncodeButton.png");
+
+
+    randomizeBox = Rectangle({77, 203}, 800, 400);
+    countBox = Rectangle({1000, 203}, 300, 700);
+
     randomText = generateRandomText(len);
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);

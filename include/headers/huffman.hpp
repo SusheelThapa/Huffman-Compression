@@ -1,7 +1,7 @@
 #include "window.hpp"
 #include "texture.hpp"
-#include "button.old.hpp"
 #include "queue.hpp"
+#include "rectangle.hpp"
 
 #include <unordered_map>
 
@@ -17,7 +17,9 @@ private:
 
 public:
     Window window;
-    Texture randomize, count;
+    Texture randomizeButton, countButton, buildButton, encodeButton;
+    Rectangle randomizeBox, countBox;
+
     PriorityQueue pq;
 
 public:

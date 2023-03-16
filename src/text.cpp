@@ -1,11 +1,12 @@
 #include "text.hpp"
 
-Text::Text(std::string text, SDL_Point point, SDL_Color color, int size)
+Text::Text(std::string text, SDL_Point point, SDL_Color color, int size, int wrapLength)
 {
     this->text = text;
     this->renderCoordinate = point;
     this->textColor = color;
     this->size = size;
+    this->wrapLength = wrapLength;
 }
 
 Text::~Text()

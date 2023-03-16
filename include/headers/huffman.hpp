@@ -14,15 +14,14 @@ private:
     SDL_Event e;
 
     std::string randomText;
-    std::string symText, freqText;
+    std::string symText, freqText, encText, cmprText;
     std::unordered_map<std::string, int> fMap;
 
 public:
     Window window;
     Texture randomizeButton, countButton, buildButton, encodeButton;
     Rectangle randomizeBox, countBox;
-    Text randomizeText, symbolText, frequencyText;
-    std::string encodedText = "";
+    Text randomizeText, symbolText, frequencyText, encodedText, compressedText;
     PriorityQueue pq;
     Node *huffmanTreeRootNode;
 
@@ -61,7 +60,9 @@ private:
     void displayHuffmanTree();
     int findDepthOfHuffmanTree(Node *);
 
-    void generateHuffmanCode(Node *node, std::string encodedText, SDL_Point, int);
+    void generateHuffmanCode(Node *node, std::string encText, SDL_Point, int);
 
-    void encodeString();
+    void generateEncodedText();
+
+    void compressString();
 };

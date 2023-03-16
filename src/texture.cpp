@@ -68,10 +68,10 @@ bool Texture::loadFromFile(Window &window, std::string path)
 
 #if defined SDL_TTF_MAJOR_VERSION
 
-bool Texture::loadFromText(Window &window, TTF_Font *font, std::string text, SDL_Color color)
+bool Texture::loadFromText(Window &window, TTF_Font *font, std::string text, SDL_Color color, int wrapValue)
 {
     /*Create a surface outof text provide*/
-    SDL_Surface *temporary_surface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), color, 750);
+    SDL_Surface *temporary_surface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), color, wrapValue);
 
     if (temporary_surface == NULL)
     {

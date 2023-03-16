@@ -13,11 +13,12 @@ private:
     Texture textTexture;
     TTF_Font *mainFont = NULL;
     int size;
+    int wrapLength;
 
     void createTextTexture (Window &window, int size)
     {
         mainFont = TTF_OpenFont("resources/font/Helvetica.ttf", size);
-        textTexture.loadFromText(window, mainFont, text, textColor);
+        textTexture.loadFromText(window, mainFont, text, textColor, wrapLength);
         dimensions.x = textTexture.getWidth();
         dimensions.y = textTexture.getHeight();
     }
@@ -25,7 +26,7 @@ private:
 public:
 
     Text() {}
-    Text(std::string text, SDL_Point point, SDL_Color color, int size=13);
+    Text(std::string text, SDL_Point point, SDL_Color color, int size=13, int wrapLength = 750);
     ~Text();
     void free();
     void render(Window &window);

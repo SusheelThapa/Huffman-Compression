@@ -3,8 +3,7 @@
 int main(int argc, char *argv[])
 {
 
-
-	Huffman a(100);
+	Huffman a(1000);
 	a.pq.display();
 
 	/*Running the app till window is not closed*/
@@ -15,7 +14,6 @@ int main(int argc, char *argv[])
 
 		/*Clear the window with provide color*/
 		a.window.clear({0, 0, 0, 0});
-
 
 		a.render();
 

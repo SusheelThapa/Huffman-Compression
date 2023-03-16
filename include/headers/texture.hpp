@@ -43,7 +43,7 @@ public:
 
 #if defined(SDL_TTF_MAJOR_VERSION)
 
-    bool loadFromText(Window &window, TTF_Font *font, std::string text, SDL_Color color);
+    bool loadFromText(Window &window, TTF_Font *font, std::string text, SDL_Color color, int wrapValue = 750);
 
 #endif
 

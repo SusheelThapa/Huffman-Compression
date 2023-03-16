@@ -24,12 +24,14 @@ private:
     }
 
 public:
-
-    Text() {}
+    Text();
     Text(std::string text, SDL_Point point, SDL_Color color, int size=13, int wrapLength = 750);
     ~Text();
     void free();
     void render(Window &window);
     SDL_Point getCoordinate();
     void setCoordinate(SDL_Point point);
+
+public:
+    bool isNull = false;
 };

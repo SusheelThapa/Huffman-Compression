@@ -59,7 +59,7 @@ void Node::setRenderPosition(SDL_Point position)
 {
     renderPosition = {position.x, position.y};
 
-    nodeText = new Text(this->key, position, {(rand() % 255), (rand() % 255), (rand() % 255), 255}, 20);
+    nodeText = new Text(this->key, position, {(rand() % 255), (rand() % 255), (rand() % 255), 255}, 30);
 }
 
 SDL_Point Node::getRenderPosition()

@@ -55,7 +55,7 @@ void Huffman::handleEvent()
                 if (randomizeButton.isMouseClicked(window, clickedPosition))
                 {
                     std::cout << "Randomized button is clicked." << std::endl;
-                    randomText = generateRandomText((this->originalSize)/8);
+                    randomText = generateRandomText((this->originalSize) / 8);
                     randomizeText = Text(randomText, {100, 220}, {102, 178, 255, 255}, 20);
                 }
 
@@ -75,10 +75,11 @@ void Huffman::handleEvent()
 
                     huffmanTreeRootNode = createHuffmanTree();
                     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
-                    treeWidth = 20 * pow(2, depthOfHuffmanTree);
-                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + (treeWidth / 2), 200}, treeWidth / 2);
+                    treeWidth = 50 * pow(2, depthOfHuffmanTree);
+                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 200}, treeWidth / 2);
 
                     // Code for huffman tree rendering
+                    renderHuffmanTree();
 
                     // Sab render vaisakepaxi buildbutton lai hatayera encode button rakhne
                     encodeFlag = true;
@@ -256,6 +257,7 @@ void Huffman::generateHuffmanCode(Node *node, std::string encText, SDL_Point pos
     // Setting the Huffman code for the give Key
     if (node->getKey() != " ")
     {
+        std::cout << position.x << " " << position.y << std::endl;
         pq.setHuffmanCodeAndRenderPosition(
             node->getKey(),
             encText, position);
@@ -264,13 +266,13 @@ void Huffman::generateHuffmanCode(Node *node, std::string encText, SDL_Point pos
     // Visiting left sub-tree
     if (node->getLeftChild())
     {
-        generateHuffmanCode(node->getLeftChild(), encText + "0", {position.x - treeWidth / 2, position.y + 10}, treeWidth / 2);
+        generateHuffmanCode(node->getLeftChild(), encText + "0", {position.x - treeWidth / 2, position.y + 100}, treeWidth / 2);
     }
 
     // Visiting right sub tree
     if (node->getRightChild())
     {
-        generateHuffmanCode(node->getRightChild(), encText + "1", {position.x + treeWidth / 2, position.y + 10}, treeWidth / 2);
+        generateHuffmanCode(node->getRightChild(), encText + "1", {position.x + treeWidth / 2, position.y + 50}, treeWidth / 2);
     }
 }
 
@@ -306,17 +308,10 @@ void Huffman::renderHuffmanTree()
     Stack<Node *> S;
     Node *root = huffmanTreeRootNode;
 
-    Text *nodeValue;
     while (true)
     {
-        // std::cout << pq.getRenderPosition(root->getKey()).x << " " << pq.getRenderPosition(root->getKey()).y << std::endl;
-
-        nodeValue = new Text(
-            root->getKey(),
-            pq.getRenderPosition(root->getKey()),
-            {rand() % 255, rand() % 255, rand() % 255, 255}, 20);
-
-        nodeValue->render(window);
+        // std::cout << root->getKey() << std::endl;
+        pq.renderNode(window, root->getKey());
 
         if (root->getRightChild())
         {
@@ -333,8 +328,6 @@ void Huffman::renderHuffmanTree()
         {
             break;
         }
-
-        nodeValue->free();
     }
 }
 
@@ -364,6 +357,7 @@ void Huffman::render()
 
     if (encodeFlag)
     {
+        renderHuffmanTree();
         buildButton.free();
         encodeButton.render(window, 1400, 71);
     }
@@ -380,6 +374,4 @@ void Huffman::render()
         compressedText.render(window);
         compressedText.free();
     }
-
-    // renderHuffmanTree();
 }

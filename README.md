@@ -16,6 +16,10 @@
 A Huffman encoding visualizer is a tool that helps users<br> understand the process of assigning variable-length codes to different characters in a message, with the<br> goal of minimizing the total number of bits required to represent the message while preserving its content, and<br> is useful for computer science students and anyone interested in digital communication.<br>
 </p>
 
+## <p align="center"> Demo </p>
+
+<!-- Demo goes here -->
+
 ## Setting up Project
 
 ### Linux

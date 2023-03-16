@@ -4,7 +4,6 @@ int main(int argc, char *argv[])
 {
 
 	Huffman a(1000);
-	a.pq.display();
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())
@@ -23,6 +22,6 @@ int main(int argc, char *argv[])
 	}
 
 	std::cout << "Depth of the tree is " << a.depthOfHuffmanTree << std::endl;
-
+	std::cout << "Original size is: " << a.originalSize << " Compressed size is: " << a.compressedSize << std::endl;  
 	return 0;
 }

@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "text.hpp"
 
 class Node
 {
@@ -12,6 +13,8 @@ private:
     Node *rightChild; // Points to right child
 
     SDL_Point renderPosition;
+
+    Text *nodeText;
 
 public:
     Node();
@@ -33,6 +36,8 @@ public:
 
     void setRenderPosition(SDL_Point position);
     SDL_Point getRenderPosition();
+
+    void render(Window &);
 
     friend class PriorityQueue;
 };

@@ -58,9 +58,16 @@ std::string Node::getEncodingValue()
 void Node::setRenderPosition(SDL_Point position)
 {
     renderPosition = {position.x, position.y};
+
+    nodeText = new Text(this->key, position, {(rand() % 255), (rand() % 255), (rand() % 255), 255}, 20);
 }
 
 SDL_Point Node::getRenderPosition()
 {
     return renderPosition;
+}
+
+void Node::render(Window &window)
+{
+    nodeText->render(window);
 }

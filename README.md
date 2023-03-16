@@ -67,19 +67,7 @@ git clone git@github.com:SusheelThapa/Huffman-Compression.git
    chmod +x build.sh
    ```
 
-2. Compiling the project# <p align = "center">A Phone Call</p>
-
-<p align="center">
-<a href="https://github.com/SusheelThapa/A-Phone-Call/blob/master/LICENSE" target="blank">
-<img src="https://img.shields.io/github/license/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator license" />
-</a>
-<a href="https://github.com/SusheelThapa/A-Phone-Call/fork" target="blank">
-<img src="https://img.shields.io/github/forks/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator forks"/>
-</a>
-<a href="https://github.comSusheelThapa/A-Phone-Call/stargazers" target="blank">
-<img src="https://img.shields.io/github/stars/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator stars"/>
-</a>
-</p>
+2. Compiling the project
 
 ```sh
 ./build.sh
@@ -100,3 +88,9 @@ git clone git@github.com:SusheelThapa/Huffman-Compression.git
    mingw32-make.exe
    ```
 3. Run the project by typing `./main` in terminal.
+
+## Authors
+
+- [Rohan Maharjan](https://github.com/Rohan69420)
+- [Suprim Devkota](https://github.com/SuprimDevkota)
+- [Susheel Thapa](https://github.com/SusheelThapa)

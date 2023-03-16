@@ -3,7 +3,7 @@
 int main(int argc, char *argv[])
 {
 
-	Huffman a(3000);
+	Huffman a(1000);
 	a.pq.display();
 
 	/*Running the app till window is not closed*/

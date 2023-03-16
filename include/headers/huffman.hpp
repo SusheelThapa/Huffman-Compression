@@ -14,33 +14,32 @@ private:
     SDL_Event e;
 
     std::string randomText;
+    std::string symText, freqText;
     std::unordered_map<std::string, int> fMap;
 
 public:
     Window window;
     Texture randomizeButton, countButton, buildButton, encodeButton;
     Rectangle randomizeBox, countBox;
-    Text randomizeText;
-
-    std::string encodedText ="";
-
+    Text randomizeText, symbolText, frequencyText;
+    std::string encodedText = "";
     PriorityQueue pq;
     Node *huffmanTreeRootNode;
 
+    // Const Required for Tree Display
+    int treeWidth;
+
 public:
+    int depthOfHuffmanTree = 0;
+
     Huffman();
 
     Huffman(int count);
 
     void handleEvent();
 
-    Node *createHuffmanTree();
+    void render();
 
-    void displayHuffmanTree();
-
-    void generateHuffmanCode(Node *node, std::string encodedText);
-
-    void encodeString();
 private:
     // Generates a random string of 'count' characters
     std::string generateRandomText(int count);
@@ -51,5 +50,18 @@ private:
     // Creates priority queue from the hashmap
     PriorityQueue createPriorityQueue(std::unordered_map<std::string, int> fMap);
 
+    //Gets key and frequency of the nodes into separate strings for rendering
+    void generateCountText(PriorityQueue pq);
+
     // Creates Huffman Tree from the priority queue
+    void renderHuffmanTree();
+
+    Node *createHuffmanTree();
+
+    void displayHuffmanTree();
+    int findDepthOfHuffmanTree(Node *);
+
+    void generateHuffmanCode(Node *node, std::string encodedText, SDL_Point, int);
+
+    void encodeString();
 };

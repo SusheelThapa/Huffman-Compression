@@ -24,7 +24,7 @@ public:
 
     bool empty();
 
-    void setHuffmanCode(std::string key, std::string encodingString)
+    void setHuffmanCodeAndRenderPosition(std::string key, std::string encodingString, SDL_Point position)
     {
         Node *ptr = front;
 
@@ -33,6 +33,7 @@ public:
             ptr = ptr->link;
         }
         ptr->setEncodingValue(encodingString);
+        ptr->setRenderPosition(position);
     }
 
     std::string getHuffmanCode(std::string key)
@@ -45,5 +46,20 @@ public:
             ptr = ptr->link;
         }
         return ptr->getEncodingValue();
+    }
+    SDL_Point getRenderPosition(std::string key)
+    {
+        if (key == " ")
+        {
+            return {0, 0};
+        }
+
+        Node *ptr = front;
+
+        while (ptr->getKey() != key)
+        {
+            ptr = ptr->link;
+        }
+        return ptr->getRenderPosition();
     }
 };

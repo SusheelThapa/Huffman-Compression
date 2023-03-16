@@ -20,7 +20,6 @@ public:
     {
         if (stack.isEmpty())
         {
-            cout << "Stack is empty" << endl;
             return nullptr;
         }
         return stack.deleteFromBeginning();

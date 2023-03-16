@@ -40,7 +40,7 @@ void PriorityQueue::push(std::string key, int priority, Node *leftChild, Node *r
     else
     {
         q = front;
-        while (q->link != NULL && q->link->priority <= priority)
+        while (q->link != NULL && q->link->priority < priority)
         {
             q = q->link;
         }

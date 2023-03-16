@@ -74,8 +74,8 @@ void Huffman::handleEvent()
                     std::cout << huffmanTreeRootNode->getKey() << std::endl;
                     pq.display();
                     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
-                    treeWidth = 10 * pow(2, depthOfHuffmanTree);
-                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 55}, {-1, -1}, treeWidth / 2);
+                    treeWidth = 8 * pow(2, depthOfHuffmanTree);
+                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 200}, {-1, -1}, treeWidth / 2);
 
                     encodeFlag = true;
                 }
@@ -262,13 +262,13 @@ void Huffman::generateHuffmanCode(Node *node, std::string encText, SDL_Point pos
     // Visiting left sub-tree
     if (node->getLeftChild())
     {
-        generateHuffmanCode(node->getLeftChild(), encText + "0", {position.x - treeWidth / 2, position.y + 150}, position, treeWidth / 2);
+        generateHuffmanCode(node->getLeftChild(), encText + "0", {position.x - treeWidth / 2, position.y + 75}, position, treeWidth / 2);
     }
 
     // Visiting right sub tree
     if (node->getRightChild())
     {
-        generateHuffmanCode(node->getRightChild(), encText + "1", {position.x + treeWidth / 2, position.y + 150}, position, treeWidth / 2);
+        generateHuffmanCode(node->getRightChild(), encText + "1", {position.x + treeWidth / 2, position.y + 75}, position, treeWidth / 2);
     }
 }
 
@@ -352,13 +352,12 @@ void Huffman::render()
     {
         frequencyText.render(window);
         frequencyText.free();
-        buildButton.render(window, 1400, 71);
+        buildButton.render(window, 2000, 71);
     }
 
     if (encodeFlag)
     {
         renderHuffmanTree();
-        buildButton.free();
         encodeButton.render(window, 1400, 71);
     }
 
@@ -366,7 +365,7 @@ void Huffman::render()
     {
         encodedText.render(window);
         encodedText.free();
-        compressButton.render(window, 77, 1000);
+        compressButton.render(window, 500, 1000);
     }
 
     if (!compressedText.isNull)

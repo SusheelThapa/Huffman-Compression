@@ -1,16 +1,11 @@
 #include "text.hpp"
 
-Text::Text(std::string text, SDL_Point point, SDL_Color color, int size, bool coloredText)
+Text::Text(std::string text, SDL_Point point, SDL_Color color, int size)
 {
     this->text = text;
     this->renderCoordinate = point;
     this->textColor = color;
     this->size = size;
-    this->coloredText = coloredText;
-    if(this->coloredText == true)
-    {
-        this->textColor = {0, 255, 0, 255};
-    }
 }
 
 Text::~Text()

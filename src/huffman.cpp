@@ -15,15 +15,15 @@ Huffman::Huffman(int len)
 
     randomizeBox = Rectangle({77, 203}, 800, 400);
     randomText = generateRandomText(len);
-    randomizeText = Text(randomText, {100, 220},{255, 255, 255, 255}, 20);
+    randomizeText = Text(randomText, {100, 220},{102, 178, 255, 255}, 20);
 
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
 
     countBox = Rectangle({1000, 203}, 300, 700);
     generateCountText(pq);
-    symbolText = Text(this->symText, {1010, 220}, {255, 255, 255, 255}, 13, true);
-    frequencyText = Text(this->freqText, {1200, 220}, {255, 255, 255, 255});
+    symbolText = Text(this->symText, {1010, 220}, {0, 255, 128, 255}, 20);
+    frequencyText = Text(this->freqText, {1200, 220}, {255, 255, 255, 255}, 20);
 
     huffmanTreeRootNode = createHuffmanTree();
     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
@@ -128,7 +128,7 @@ void Huffman::generateCountText(PriorityQueue pq)
         Node* p = copy.pop();
 
         // Append the key and frequency to respective text
-        symText += "' ";
+        symText += "'";
         symText += p->getKey();
         symText += "' \n";
         freqText += std::to_string(p->getPriority());
@@ -312,5 +312,5 @@ void Huffman::render()
     symbolText.free();
     frequencyText.free();
     
-    renderHuffmanTree();
+    //renderHuffmanTree();
 }

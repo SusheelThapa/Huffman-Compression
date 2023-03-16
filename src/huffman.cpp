@@ -92,7 +92,7 @@ void Huffman::handleEvent()
                 {
                     std::cout << "Compress button is clicked" << std::endl;
                     compressString();
-                    compressedText = Text(cmprText, {50, 1100}, {153, 51, 255, 255}, 20, window.getWidth() - 100);
+                    compressedText = Text(cmprText, {50, 1150}, {153, 51, 255, 255}, 20, window.getWidth() - 100);
 
                     cmprBxtext = "Original string size: ";
                     cmprBxtext += std::to_string(originalSize);

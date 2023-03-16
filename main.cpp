@@ -3,6 +3,7 @@
 int main(int argc, char *argv[])
 {
 
+
 	Huffman a(100);
 	a.pq.display();
 
@@ -15,8 +16,6 @@ int main(int argc, char *argv[])
 		/*Clear the window with provide color*/
 		a.window.clear({0, 0, 0, 0});
 
-		// Appears after countButton is pressed
-		// a.countBox.render(a.window);
 
 		a.render();
 

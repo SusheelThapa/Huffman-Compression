@@ -14,20 +14,24 @@ Huffman::Huffman(int len)
     encodeButton.loadFromFile(window, "resources/DesignedElements/EncodeButton.png");
 
     randomizeBox = Rectangle({77, 203}, 800, 400);
-    countBox = Rectangle({1000, 203}, 300, 700);
-
     randomText = generateRandomText(len);
     randomizeText = Text(randomText, {100, 220},{255, 255, 255, 255}, 20);
 
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
+
+    countBox = Rectangle({1000, 203}, 300, 700);
+    generateCountText(pq);
+    symbolText = Text(this->symText, {1010, 220}, {255, 255, 255, 255}, 13, true);
+    frequencyText = Text(this->freqText, {1200, 220}, {255, 255, 255, 255});
+
     huffmanTreeRootNode = createHuffmanTree();
     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
     treeWidth = 20 * pow(2, depthOfHuffmanTree);
 
     generateHuffmanCode(huffmanTreeRootNode, "", {1500 + (treeWidth / 2), 200}, treeWidth / 2);
-
     encodeString();
+
 }
 
 void Huffman::handleEvent()
@@ -109,6 +113,28 @@ PriorityQueue Huffman::createPriorityQueue(std::unordered_map<std::string, int> 
     }
 
     return pq;
+}
+
+void Huffman::generateCountText(PriorityQueue pq)
+{
+    PriorityQueue copy = pq;
+    this->symText = "";
+    this->freqText = "";
+    int cnt = 0;
+
+    while (!copy.empty())
+    {
+        // Get the first element of queue
+        Node* p = copy.pop();
+
+        // Append the key and frequency to respective text
+        symText += "' ";
+        symText += p->getKey();
+        symText += "' \n";
+        freqText += std::to_string(p->getPriority());
+        freqText += '\n';
+        cnt++;
+    }
 }
 
 Node *Huffman::createHuffmanTree()
@@ -277,10 +303,14 @@ void Huffman::render()
 {
     randomizeButton.render(window, 400, 71);
     countButton.render(window, 1000, 71);
-
     randomizeText.render(window);
 
-    randomizeText.free();
+	  symbolText.render(window);
+		frequencyText.render(window);
 
+    randomizeText.free();
+    symbolText.free();
+    frequencyText.free();
+    
     renderHuffmanTree();
 }

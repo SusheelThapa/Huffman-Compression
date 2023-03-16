@@ -14,14 +14,13 @@ private:
     SDL_Event e;
 
     std::string randomText;
-    std::string symText, freqText, encText, cmprText;
+    std::string symText, freqText, encText, cmprText, cmprBxtext;
     std::unordered_map<std::string, int> fMap;
 
 public:
     Window window;
     Texture randomizeButton, countButton, buildButton, encodeButton, compressButton;
-    Rectangle randomizeBox, countBox;
-    Text randomizeText, symbolText, frequencyText, encodedText, compressedText;
+    Text randomizeText, symbolText, frequencyText, encodedText, compressedText, compressionBoxText;
     PriorityQueue pq;
     Node *huffmanTreeRootNode;
 

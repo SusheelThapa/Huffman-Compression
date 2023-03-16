@@ -71,8 +71,6 @@ void Huffman::handleEvent()
                     std::cout << "Build button is clicked" << std::endl;
 
                     huffmanTreeRootNode = createHuffmanTree();
-                    std::cout << huffmanTreeRootNode->getKey() << std::endl;
-                    pq.display();
                     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
                     treeWidth = 8 * pow(2, depthOfHuffmanTree);
                     generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 200}, {-1, -1}, treeWidth / 2);
@@ -112,13 +110,11 @@ void Huffman::handleEvent()
 std::string Huffman::generateRandomText(int len)
 {
     std::string alphanum = "A0B1C2D3E4F5G6H7I8J9K0L1M2N3O4P5Q6R7S8T9U0V1W2X3Y4Z5A6B7C8D9E0F1G2H3I4J5K6L7M8N9O0P1Q2R3S4T5U6V7W8X9Y0Z1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T1U2V3W4X5Y6Z7A8B9C0D1E2F3G4H5I6J7K8L9M0N1O2P3Q4R5S6T7U8V9W0X1Y2Z3A4B5C6D7E8F9G0H1I2";
-    // std::string alphanum = "1xb2";
     std::string s;
     s.reserve(len);
 
     while (len--)
         s += alphanum[rand() % (alphanum.size() - 1)];
-    // std::cout << s << std::endl;
     return s;
 }
 
@@ -253,7 +249,6 @@ void Huffman::generateHuffmanCode(Node *node, std::string encText, SDL_Point pos
     {
         return;
     }
-    std::cout << node->getKey() << std::endl;
 
     pq.setHuffmanCodeAndRenderPosition(
         node->getKey(),

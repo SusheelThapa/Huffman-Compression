@@ -18,10 +18,8 @@ int main(int argc, char *argv[])
 
 		/*Updating the window*/
 		a.window.present();
-
 	}
 
-	std::cout << "Depth of the tree is " << a.depthOfHuffmanTree << std::endl;
-	std::cout << "Original size is: " << a.originalSize << " Compressed size is: " << a.compressedSize << std::endl;  
+	std::cout << "Original size is: " << a.originalSize << " Compressed size is: " << a.compressedSize << std::endl;
 	return 0;
 }

@@ -4,9 +4,9 @@ int main(int argc, char *argv[])
 {
 
 	Huffman a(2800);
-	a.pq.display();
-	a.displayHuffmanTree();
-	a.pq.display();
+	// a.pq.display();
+	// a.displayHuffmanTree();
+	// a.pq.display();
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())
@@ -30,8 +30,9 @@ int main(int argc, char *argv[])
 
 		/*Updating the window*/
 		a.window.present();
-
 		a.randomizeText.free();
+		a.symbolText.free();
+		a.frequencyText.free();
 	}
 
 	return 0;

@@ -62,4 +62,20 @@ public:
         }
         return ptr->getRenderPosition();
     }
+
+    void renderNode(Window &window, std::string key)
+    {
+        if (key == " ")
+        {
+            return;
+        }
+
+        Node *ptr = front;
+
+        while (ptr->getKey() != key)
+        {
+            ptr = ptr->link;
+        }
+        ptr->render(window);
+    }
 };

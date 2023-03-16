@@ -22,17 +22,21 @@ Huffman::Huffman(int len)
 
     countBox = Rectangle({1000, 203}, 300, 700);
     generateCountText(pq);
-    symbolText = Text(this->symText, {1010, 220}, {0, 255, 128, 255}, 20);
-    frequencyText = Text(this->freqText, {1200, 220}, {255, 255, 255, 255}, 20);
+    symbolText = Text(this->symText, {1010, 220}, {255, 102, 102, 255}, 20);
+    frequencyText = Text(this->freqText, {1200, 220}, {255, 178, 255, 255}, 20);
 
     huffmanTreeRootNode = createHuffmanTree();
     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
     treeWidth = 20 * pow(2, depthOfHuffmanTree);
 
     generateHuffmanCode(huffmanTreeRootNode, "", {1500 + (treeWidth / 2), 200}, treeWidth / 2);
-    encodeString();
 
-    encodedText = Text(encText, {50, 1100}, {153, 51, 255, 255}, 20, window.getWidth()- 100);
+    generateEncodedText();
+
+    encodedText = Text(encText, {1500, 220}, {255, 255, 102}, 20);
+
+    compressString();
+    compressedText = Text(cmprText, {50, 1100}, {153, 51, 255, 255}, 20, window.getWidth()- 100);
 }
 
 void Huffman::handleEvent()
@@ -163,6 +167,7 @@ Node *Huffman::createHuffmanTree()
 
     return cpq.pop();
 }
+
 int Huffman::findDepthOfHuffmanTree(Node *root)
 {
     if (root == nullptr)
@@ -184,6 +189,7 @@ int Huffman::findDepthOfHuffmanTree(Node *root)
         }
     }
 }
+
 void Huffman::displayHuffmanTree()
 {
     std::cout << "Preorder Traversal" << std::endl;
@@ -248,17 +254,29 @@ void Huffman::generateHuffmanCode(Node *node, std::string encText, SDL_Point pos
     }
 }
 
-void Huffman::encodeString()
+void Huffman::generateEncodedText()
+{
+    this->encText = "";
+    PriorityQueue copy = pq;
+    while(!copy.empty())
+    {
+        std::string temp = pq.getHuffmanCode(copy.pop()->getKey());
+        encText += temp;
+        encText += '\n';
+    }
+}
+
+void Huffman::compressString()
 {
 
-    encText = "";
+    cmprText = "";
     std::string temp = "";
 
     for (int i = 0; i < randomText.length(); i++)
     {
         temp = "";
         temp += randomText[i];
-        encText += pq.getHuffmanCode(temp);
+        cmprText += pq.getHuffmanCode(temp);
     }
 }
 
@@ -308,12 +326,16 @@ void Huffman::render()
 
     symbolText.render(window);
     frequencyText.render(window);
+
+    encodeButton.render(window, 1400, 71);
     encodedText.render(window);
+    compressedText.render(window);
 
     randomizeText.free();
     symbolText.free();
     frequencyText.free();
     encodedText.free();
+    compressedText.free();
 
     // renderHuffmanTree();
 }

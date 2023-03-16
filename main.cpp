@@ -23,9 +23,10 @@ int main(int argc, char *argv[])
 		a.randomizeText.render(a.window);
 
 		a.countButton.render(a.window, 1000, 71);
-
 		//Appears after countButton is pressed
 		a.countBox.render(a.window);
+		a.symbolText.render(a.window);
+		a.frequencyText.render(a.window);
 
 		/*Updating the window*/
 		a.window.present();

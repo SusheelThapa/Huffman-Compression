@@ -1,4 +1,20 @@
-# Huffman-Compression
+# <p align = "center">Huffman-Compression</p>
+
+<p align="center">
+<a href="https://github.com/SusheelThapa/Huffman-Compression/blob/main/LICENSE" target="blank">
+<img src="https://img.shields.io/github/license/SusheelThapa/Huffman-Compression?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator license" />
+</a>
+<a href="https://github.com/SusheelThapa/Huffman-Compression/fork" target="blank">
+<img src="https://img.shields.io/github/forks/SusheelThapa/Huffman-Compression?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator forks"/>
+</a>
+<a href="https://github.comSusheelThapa/Huffman-Compression/stargazers" target="blank">
+<img src="https://img.shields.io/github/stars/SusheelThapa/Huffman-Compression?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator stars"/>
+</a>
+</p>
+
+<p align="center">
+A Huffman encoding visualizer is a tool that helps users<br> understand the process of assigning variable-length codes to different characters in a message, with the<br> goal of minimizing the total number of bits required to represent the message while preserving its content, and<br> is useful for computer science students and anyone interested in digital communication.<br>
+</p>
 
 ## Setting up Project
 
@@ -7,6 +23,7 @@
 1. First of all give `install.sh` file executable permission
 
    ```sh
+   A Huffman encoding visualizer is a tool<br> that helps users understand the process of assigning variable-length codes to different characters in a message<br>, with the goal of minimizing the total number of bits required to represent the message while preserving its content, and is useful for computer science students and anyone interested in digital communication.
    chmod +x install.sh
    ```
 
@@ -28,8 +45,7 @@ git clone git@github.com:SusheelThapa/Huffman-Compression.git
 
 2. Go to this drive link and download the files:
 
-https://drive.google.com/drive/folders/13t9OIwvZkN2bkxj49nEdxqW1jjMEYFqs?usp=sharing
-
+   https://drive.google.com/drive/folders/13t9OIwvZkN2bkxj49nEdxqW1jjMEYFqs?usp=sharing
 
 3. Go to the project's `include` directory and paste the `lib` folders and additional `include` directories inside it.
 
@@ -47,11 +63,23 @@ https://drive.google.com/drive/folders/13t9OIwvZkN2bkxj49nEdxqW1jjMEYFqs?usp=sha
    chmod +x build.sh
    ```
 
-2. Compiling the project
+2. Compiling the project# <p align = "center">A Phone Call</p>
 
-   ```sh
-   ./build.sh
-   ```
+<p align="center">
+<a href="https://github.com/SusheelThapa/A-Phone-Call/blob/master/LICENSE" target="blank">
+<img src="https://img.shields.io/github/license/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator license" />
+</a>
+<a href="https://github.com/SusheelThapa/A-Phone-Call/fork" target="blank">
+<img src="https://img.shields.io/github/forks/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator forks"/>
+</a>
+<a href="https://github.comSusheelThapa/A-Phone-Call/stargazers" target="blank">
+<img src="https://img.shields.io/github/stars/SusheelThapa/A-Phone-Call?style=for-the-badge&logo=appveyor" alt="github-profile-readme-generator stars"/>
+</a>
+</p>
+
+```sh
+./build.sh
+```
 
 3. Running project
 
@@ -63,7 +91,7 @@ https://drive.google.com/drive/folders/13t9OIwvZkN2bkxj49nEdxqW1jjMEYFqs?usp=sha
 
 1. Open `Huffman-Compression` in VScode.
 
-2. Open Terminal and type 
+2. Open Terminal and type
    ```
    mingw32-make.exe
    ```

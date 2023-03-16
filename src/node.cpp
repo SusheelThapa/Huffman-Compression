@@ -15,6 +15,7 @@ Node::Node(std::string key, int priority)
     encodingValue = "";
     leftChild = nullptr;
     rightChild = nullptr;
+    renderPosition = {0, 0};
 }
 
 Node::Node(const Node &nd)
@@ -52,4 +53,14 @@ std::string Node::setEncodingValue(std::string value)
 std::string Node::getEncodingValue()
 {
     return encodingValue;
+}
+
+void Node::setRenderPosition(SDL_Point position)
+{
+    renderPosition = {position.x, position.y};
+}
+
+SDL_Point Node::getRenderPosition()
+{
+    return renderPosition;
 }

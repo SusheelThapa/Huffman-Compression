@@ -3,10 +3,9 @@
 int main(int argc, char *argv[])
 {
 
-	Huffman a(2800);
-	// a.pq.display();
-	// a.displayHuffmanTree();
-	// a.pq.display();
+
+	Huffman a(100);
+	a.pq.display();
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())
@@ -17,23 +16,15 @@ int main(int argc, char *argv[])
 		/*Clear the window with provide color*/
 		a.window.clear({0, 0, 0, 0});
 
-		a.randomizeButton.render(a.window, 400, 71);
 
-		a.randomizeBox.render(a.window);
-		a.randomizeText.render(a.window);
-
-		a.countButton.render(a.window, 1000, 71);
-		//Appears after countButton is pressed
-		a.countBox.render(a.window);
-		a.symbolText.render(a.window);
-		a.frequencyText.render(a.window);
+		a.render();
 
 		/*Updating the window*/
 		a.window.present();
-		a.randomizeText.free();
-		a.symbolText.free();
-		a.frequencyText.free();
+
 	}
+
+	std::cout << "Depth of the tree is " << a.depthOfHuffmanTree << std::endl;
 
 	return 0;
 }

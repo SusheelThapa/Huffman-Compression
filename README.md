@@ -27,7 +27,6 @@ A Huffman encoding visualizer is a tool that helps users<br> understand the proc
 1. First of all give `install.sh` file executable permission
 
    ```sh
-   A Huffman encoding visualizer is a tool<br> that helps users understand the process of assigning variable-length codes to different characters in a message<br>, with the goal of minimizing the total number of bits required to represent the message while preserving its content, and is useful for computer science students and anyone interested in digital communication.
    chmod +x install.sh
    ```
 

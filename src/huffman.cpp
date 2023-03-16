@@ -8,35 +8,18 @@ Huffman::Huffman()
 
 Huffman::Huffman(int len)
 {
+    this->originalSize = len * 8;
     randomizeButton.loadFromFile(window, "resources/DesignedElements/Randomizebutton.png");
     countButton.loadFromFile(window, "resources/DesignedElements/CountButton.png");
     buildButton.loadFromFile(window, "resources/DesignedElements/BuildButton.png");
     encodeButton.loadFromFile(window, "resources/DesignedElements/EncodeButton.png");
+    compressButton.loadFromFile(window, "resources/DesignedElements/CompressButton.png");
 
     randomizeBox = Rectangle({77, 203}, 800, 400);
     randomText = generateRandomText(len);
     randomizeText = Text(randomText, {100, 220}, {102, 178, 255, 255}, 20);
 
-    fMap = Hashmap(randomText);
-    pq = createPriorityQueue(fMap);
-
     countBox = Rectangle({1000, 203}, 300, 700);
-    generateCountText(pq);
-    symbolText = Text(this->symText, {1010, 220}, {255, 102, 102, 255}, 20);
-    frequencyText = Text(this->freqText, {1200, 220}, {255, 178, 255, 255}, 20);
-
-    huffmanTreeRootNode = createHuffmanTree();
-    depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
-    treeWidth = 20 * pow(2, depthOfHuffmanTree);
-
-    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + (treeWidth / 2), 200}, treeWidth / 2);
-
-    generateEncodedText();
-
-    encodedText = Text(encText, {1500, 220}, {255, 255, 102}, 20);
-
-    compressString();
-    compressedText = Text(cmprText, {50, 1100}, {153, 51, 255, 255}, 20, window.getWidth()- 100);
 }
 
 void Huffman::handleEvent()
@@ -59,8 +42,6 @@ void Huffman::handleEvent()
         if (e.type == SDL_MOUSEBUTTONDOWN)
         {
             SDL_GetMouseState(&clickedPosition.x, &clickedPosition.y);
-
-            std::cout << clickedPosition.x << " " << clickedPosition.y << std::endl;
         }
 
         if (e.type == SDL_MOUSEBUTTONUP)
@@ -71,12 +52,51 @@ void Huffman::handleEvent()
 
             if (currentClickedPosition.x == clickedPosition.x && currentClickedPosition.y == clickedPosition.y)
             {
+                if (randomizeButton.isMouseClicked(window, clickedPosition))
+                {
+                    std::cout << "Randomized button is clicked." << std::endl;
+                    randomText = generateRandomText((this->originalSize)/8);
+                    randomizeText = Text(randomText, {100, 220}, {102, 178, 255, 255}, 20);
+                }
 
-                std::cout << "Button is clicked";
+                else if (countButton.isMouseClicked(window, clickedPosition))
+                {
+                    std::cout << "Count button is clicked" << std::endl;
+                    fMap = Hashmap(randomText);
+                    pq = createPriorityQueue(fMap);
+                    generateCountText(pq);
+                    symbolText = Text(this->symText, {1010, 220}, {255, 102, 102, 255}, 20);
+                    frequencyText = Text(this->freqText, {1200, 220}, {255, 178, 255, 255}, 20);
+                }
 
-                /**
-                 * TODO: Logic to identify which button is clicked
-                 */
+                else if (buildButton.isMouseClicked(window, clickedPosition))
+                {
+                    std::cout << "Build button is clicked" << std::endl;
+
+                    huffmanTreeRootNode = createHuffmanTree();
+                    depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
+                    treeWidth = 20 * pow(2, depthOfHuffmanTree);
+                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + (treeWidth / 2), 200}, treeWidth / 2);
+
+                    // Code for huffman tree rendering
+
+                    // Sab render vaisakepaxi buildbutton lai hatayera encode button rakhne
+                    encodeFlag = true;
+                }
+
+                else if (encodeButton.isMouseClicked(window, clickedPosition))
+                {
+                    std::cout << "Encode button is clicked" << std::endl;
+                    generateEncodedText();
+                    encodedText = Text(encText, {1500, 220}, {255, 255, 102}, 20);
+                }
+
+                else if (compressButton.isMouseClicked(window, clickedPosition))
+                {
+                    std::cout << "Compress button is clicked" << std::endl;
+                    compressString();
+                    compressedText = Text(cmprText, {50, 1100}, {153, 51, 255, 255}, 20, window.getWidth() - 100);
+                }
             }
         }
     }
@@ -258,7 +278,7 @@ void Huffman::generateEncodedText()
 {
     this->encText = "";
     PriorityQueue copy = pq;
-    while(!copy.empty())
+    while (!copy.empty())
     {
         std::string temp = pq.getHuffmanCode(copy.pop()->getKey());
         encText += temp;
@@ -268,7 +288,6 @@ void Huffman::generateEncodedText()
 
 void Huffman::compressString()
 {
-
     cmprText = "";
     std::string temp = "";
 
@@ -277,6 +296,7 @@ void Huffman::compressString()
         temp = "";
         temp += randomText[i];
         cmprText += pq.getHuffmanCode(temp);
+        compressedSize += pq.getHuffmanCode(temp).length();
     }
 }
 
@@ -322,20 +342,44 @@ void Huffman::render()
 {
     randomizeButton.render(window, 400, 71);
     countButton.render(window, 1000, 71);
-    randomizeText.render(window);
 
-    symbolText.render(window);
-    frequencyText.render(window);
+    if (!randomizeText.isNull)
+    {
+        randomizeText.render(window);
+        randomizeText.free();
+    }
 
-    encodeButton.render(window, 1400, 71);
-    encodedText.render(window);
-    compressedText.render(window);
+    if (!symbolText.isNull)
+    {
+        symbolText.render(window);
+        symbolText.free();
+    }
 
-    randomizeText.free();
-    symbolText.free();
-    frequencyText.free();
-    encodedText.free();
-    compressedText.free();
+    if (!frequencyText.isNull)
+    {
+        frequencyText.render(window);
+        frequencyText.free();
+        buildButton.render(window, 1400, 71);
+    }
+
+    if (encodeFlag)
+    {
+        buildButton.free();
+        encodeButton.render(window, 1400, 71);
+    }
+
+    if (!encodedText.isNull)
+    {
+        encodedText.render(window);
+        encodedText.free();
+        compressButton.render(window, 77, 1000);
+    }
+
+    if (!compressedText.isNull)
+    {
+        compressedText.render(window);
+        compressedText.free();
+    }
 
     // renderHuffmanTree();
 }

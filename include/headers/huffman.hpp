@@ -19,7 +19,7 @@ private:
 
 public:
     Window window;
-    Texture randomizeButton, countButton, buildButton, encodeButton;
+    Texture randomizeButton, countButton, buildButton, encodeButton, compressButton;
     Rectangle randomizeBox, countBox;
     Text randomizeText, symbolText, frequencyText, encodedText, compressedText;
     PriorityQueue pq;
@@ -27,6 +27,9 @@ public:
 
     // Const Required for Tree Display
     int treeWidth;
+    bool encodeFlag = false;
+    int originalSize;
+    int compressedSize = 0;
 
 public:
     int depthOfHuffmanTree = 0;

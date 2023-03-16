@@ -1,5 +1,10 @@
 #include "text.hpp"
 
+Text:: Text()
+{
+    this->isNull = true;
+}
+
 Text::Text(std::string text, SDL_Point point, SDL_Color color, int size, int wrapLength)
 {
     this->text = text;

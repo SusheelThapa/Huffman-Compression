@@ -11,15 +11,19 @@ private:
     SDL_Texture *texture = nullptr;
 
     int width;
-
     int height;
 
+    SDL_Point startingCoordinate;
 
 public:
     // public functions
 
     Texture();
+
     void free();
+
+    bool isMouseClicked(Window &window, SDL_Point clickedPosition);
+
 
 #if defined SDL_IMAGE_MAJOR_VERSION
 

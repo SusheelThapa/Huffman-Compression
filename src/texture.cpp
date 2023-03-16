@@ -68,10 +68,10 @@ bool Texture::loadFromFile(Window &window, std::string path)
 
 #if defined SDL_TTF_MAJOR_VERSION
 
-bool Texture::loadFromText(Window &window, TTF_Font *font, std::string text, SDL_Color color)
+bool Texture::loadFromText(Window &window, TTF_Font *font, std::string text, SDL_Color color, int wrapValue)
 {
     /*Create a surface outof text provide*/
-    SDL_Surface *temporary_surface = TTF_RenderText_Solid(font, text.c_str(), color);
+    SDL_Surface *temporary_surface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), color, wrapValue);
 
     if (temporary_surface == NULL)
     {
@@ -121,17 +121,30 @@ int Texture::getHeight()
 }
 
 void Texture::render(Window &window, int x, int y,
-                     SDL_Rect *render_rect, double angle,
-                     SDL_Point *center, SDL_RendererFlip flip)
+                     SDL_Rect *src_rect, SDL_Rect *dst_rect)
 {
+    this->startingCoordinate = {x, y};
 
-    /*Render the texture in the in window in the specified place*/
-
-    SDL_Rect renderQuad = {x, y, width, height};
-    if (render_rect != nullptr)
+    if (dst_rect == NULL)
     {
-        renderQuad.w = render_rect->w;
-        renderQuad.h = render_rect->h;
+        dst_rect = new SDL_Rect{x-window.offsetCords.x, y - window.offsetCords.y, this->getWidth(), this->getHeight()};
     }
-    SDL_RenderCopyEx(window.renderer, texture, render_rect, &renderQuad, angle, center, flip);
+
+    SDL_RenderCopy(window.renderer, texture, src_rect, dst_rect);
+}
+
+bool Texture::isMouseClicked(Window& window, SDL_Point clickedPosition)
+{
+    if(((clickedPosition.x >= this->startingCoordinate.x - window.offsetCords.x) && 
+        (clickedPosition.x <= (this->startingCoordinate.x - window.offsetCords.x + this->getWidth()))) &&
+        ((clickedPosition.y >= this->startingCoordinate.y - window.offsetCords.y) &&
+        (clickedPosition.y <= (this->startingCoordinate.y - window.offsetCords.y + this->getHeight()))))
+        {
+            return true;
+        }
+    
+    else
+    {
+        return false;
+    }
 }

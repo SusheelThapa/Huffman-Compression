@@ -1,6 +1,10 @@
 #include "window.hpp"
 #include "texture.hpp"
-#include "button.old.hpp"
+#include "queue.hpp"
+#include "rectangle.hpp"
+#include "stack.hpp"
+
+#include <unordered_map>
 
 class Huffman
 {
@@ -9,55 +13,58 @@ private:
     SDL_Point clickedPosition;
     SDL_Event e;
 
+    std::string randomText;
+    std::string symText, freqText, encText, cmprText, cmprBxtext;
+    std::unordered_map<std::string, int> fMap;
+
 public:
     Window window;
+    Texture randomizeButton, countButton, buildButton, encodeButton, compressButton;
+    Text randomizeText, symbolText, frequencyText, encodedText, compressedText, compressionBoxText;
+    PriorityQueue pq;
+    Node *huffmanTreeRootNode;
 
-    /*Texture to represent buttons in the program*/
-    Texture randomize, count;
+    // Const Required for Tree Display
+    int treeWidth;
+    bool encodeFlag = false;
+    int originalSize;
+    int compressedSize = 0;
 
-    Huffman()
-    {
-       randomize.loadFromFile(window, "resources/images/button_randomize.png");
-       count.loadFromFile(window, "resources/images/button_count.png");
-    }
+public:
+    int depthOfHuffmanTree = 0;
 
-    void handleEvent()
-    {
-        while (SDL_PollEvent(&this->e) != 0)
-        {
-            // *Yo section ma Scroll event handle huncah hai ra
+    Huffman();
 
-            if (e.type == SDL_QUIT ||
-                e.type == SDL_MOUSEMOTION ||
-                e.type == SDL_MOUSEBUTTONDOWN ||
-                e.type == SDL_MOUSEBUTTONUP)
-            {
-                window.handleEvent(e);
-            }
+    Huffman(int count);
 
-            // * Aba malai yo section ma button click handle garna xa
+    void handleEvent();
 
-            if (e.type == SDL_MOUSEBUTTONDOWN)
-            {
-                SDL_GetMouseState(&clickedPosition.x, &clickedPosition.y);
-            }
+    void render();
 
-            if (e.type == SDL_MOUSEBUTTONUP)
-            {
-                SDL_Point currentClickedPosition;
+private:
+    // Generates a random string of 'count' characters
+    std::string generateRandomText(int count);
 
-                SDL_GetMouseState(&currentClickedPosition.x, &currentClickedPosition.y);
+    // Creates and renders the hashmap of keys along with their frequencies
+    std::unordered_map<std::string, int> Hashmap(std::string randomText);
 
-                if (currentClickedPosition.x == clickedPosition.x && currentClickedPosition.y == clickedPosition.y)
-                {
+    // Creates priority queue from the hashmap
+    PriorityQueue createPriorityQueue(std::unordered_map<std::string, int> fMap);
 
-                    std::cout << "Button is clicked";
+    // Gets key and frequency of the nodes into separate strings for rendering
+    void generateCountText(PriorityQueue pq);
 
-                    /**
-                     * TODO: Logic to identify which button is clicked
-                     */
-                }
-            }
-        }
-    }
+    // Creates Huffman Tree from the priority queue
+    void renderHuffmanTree();
+
+    Node *createHuffmanTree();
+
+    void displayHuffmanTree();
+    int findDepthOfHuffmanTree(Node *);
+
+    void generateHuffmanCode(Node *node, std::string encText, SDL_Point, SDL_Point, int);
+
+    void generateEncodedText();
+
+    void compressString();
 };

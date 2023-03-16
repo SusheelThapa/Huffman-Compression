@@ -2,7 +2,8 @@
 
 int main(int argc, char *argv[])
 {
-	Huffman a;
+
+	Huffman a(1000);
 
 	/*Running the app till window is not closed*/
 	while (!a.window.isWindowClosed())
@@ -13,13 +14,14 @@ int main(int argc, char *argv[])
 		/*Clear the window with provide color*/
 		a.window.clear({0, 0, 0, 0});
 
-		a.randomize.render(a.window, 550 - a.window.offsetCords.x, 100 - a.window.offsetCords.y);
-
-		a.count.render(a.window, 1280 - a.window.offsetCords.x, 100 - a.window.offsetCords.y);
+		a.render();
 
 		/*Updating the window*/
 		a.window.present();
+
 	}
 
+	std::cout << "Depth of the tree is " << a.depthOfHuffmanTree << std::endl;
+	std::cout << "Original size is: " << a.originalSize << " Compressed size is: " << a.compressedSize << std::endl;  
 	return 0;
 }

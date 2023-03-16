@@ -82,7 +82,7 @@ void PriorityQueue::display()
         std::cout << "Item\tPriority\tEncoded representation\n";
         while (ptr != NULL)
         {
-            // if (ptr->getKey().length() == 1)
+            if (ptr->getKey().length() == 1)
                 std::cout << ptr->getKey() << '\t' << ptr->getPriority() << "\t\t" << ptr->getEncodingValue() << std::endl;
             ptr = ptr->link;
         }

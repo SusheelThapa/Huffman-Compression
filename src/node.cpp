@@ -96,4 +96,6 @@ void Node::render(Window &window)
     {
         SDL_RenderDrawLine(window.renderer, this->renderPosition.x - window.offsetCords.x, this->renderPosition.y - window.offsetCords.y, this->parentPosition.x - window.offsetCords.x, this->parentPosition.y - window.offsetCords.y);
     }
+
+    nodeText->free();
 }

@@ -74,9 +74,8 @@ void Huffman::handleEvent()
                     std::cout << huffmanTreeRootNode->getKey() << std::endl;
                     pq.display();
                     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
-                    treeWidth = 40 * pow(2, depthOfHuffmanTree);
-                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 200}, {-1, -1}, treeWidth / 2);
-                    renderHuffmanTree();
+                    treeWidth = 10 * pow(2, depthOfHuffmanTree);
+                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 55}, {-1, -1}, treeWidth / 2);
 
                     encodeFlag = true;
                 }
@@ -101,9 +100,9 @@ void Huffman::handleEvent()
                     cmprBxtext += std::to_string(compressedSize);
                     cmprBxtext += " bits\n";
                     cmprBxtext += "Size reduced:   ";
-                    cmprBxtext += std::to_string(((float)(originalSize - compressedSize)/originalSize) * 100);
+                    cmprBxtext += std::to_string(((float)(originalSize - compressedSize) / originalSize) * 100);
                     cmprBxtext += " %\n";
-                    compressionBoxText = Text(cmprBxtext, {window.getWidth() + 20, 1600}, {255, 255, 255}, 20);
+                    compressionBoxText = Text(cmprBxtext, {window.getWidth() + 20, 1600}, {102, 255, 102, 255}, 20);
                 }
             }
         }
@@ -279,9 +278,13 @@ void Huffman::generateEncodedText()
     PriorityQueue copy = pq;
     while (!copy.empty())
     {
-        std::string temp = pq.getHuffmanCode(copy.pop()->getKey());
-        encText += temp;
-        encText += '\n';
+        std::string key = copy.pop()->getKey();
+        if (key.length() == 1)
+        {
+            std::string temp = pq.getHuffmanCode(key);
+            encText += temp;
+            encText += '\n';
+        }
     }
 }
 

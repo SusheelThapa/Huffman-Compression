@@ -60,6 +60,7 @@ private:
     Node *createHuffmanTree();
 
     void displayHuffmanTree();
+
     int findDepthOfHuffmanTree(Node *);
 
     void generateHuffmanCode(Node *node, std::string encText, SDL_Point, SDL_Point, int);

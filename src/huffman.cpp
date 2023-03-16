@@ -74,14 +74,13 @@ void Huffman::handleEvent()
                     std::cout << "Build button is clicked" << std::endl;
 
                     huffmanTreeRootNode = createHuffmanTree();
+                    std::cout << huffmanTreeRootNode->getKey() << std::endl;
+                    pq.display();
                     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
                     treeWidth = 50 * pow(2, depthOfHuffmanTree);
-                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 200}, treeWidth / 2);
-
-                    // Code for huffman tree rendering
+                    generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 200}, {-1, -1}, treeWidth / 2);
                     renderHuffmanTree();
 
-                    // Sab render vaisakepaxi buildbutton lai hatayera encode button rakhne
                     encodeFlag = true;
                 }
 
@@ -183,7 +182,8 @@ Node *Huffman::createHuffmanTree()
             break;
         }
 
-        cpq.push(" ", nodeOne->getPriority() + nodeTwo->getPriority(), nodeOne, nodeTwo);
+        cpq.push(nodeOne->getKey() + nodeTwo->getKey(), nodeOne->getPriority() + nodeTwo->getPriority(), nodeOne, nodeTwo);
+        pq.push(nodeOne->getKey() + nodeTwo->getKey(), nodeOne->getPriority() + nodeTwo->getPriority());
     }
 
     return cpq.pop();
@@ -239,40 +239,29 @@ void Huffman::displayHuffmanTree()
     }
 }
 
-void Huffman::generateHuffmanCode(Node *node, std::string encText, SDL_Point position, int treeWidth)
-// std::cout << encText << std::endl;
+void Huffman::generateHuffmanCode(Node *node, std::string encText, SDL_Point position, SDL_Point parentPosition, int treeWidth)
 {
 
     if (node == nullptr)
     {
         return;
     }
+    std::cout << node->getKey() << std::endl;
 
-    // Calculating the depth of the Tree
-    if (depthOfHuffmanTree < encText.length())
-    {
-        depthOfHuffmanTree = encText.length();
-    }
-
-    // Setting the Huffman code for the give Key
-    if (node->getKey() != " ")
-    {
-        std::cout << position.x << " " << position.y << std::endl;
-        pq.setHuffmanCodeAndRenderPosition(
-            node->getKey(),
-            encText, position);
-    }
+    pq.setHuffmanCodeAndRenderPosition(
+        node->getKey(),
+        encText, position, parentPosition);
 
     // Visiting left sub-tree
     if (node->getLeftChild())
     {
-        generateHuffmanCode(node->getLeftChild(), encText + "0", {position.x - treeWidth / 2, position.y + 100}, treeWidth / 2);
+        generateHuffmanCode(node->getLeftChild(), encText + "0", {position.x - treeWidth / 2, position.y + 100}, position, treeWidth / 2);
     }
 
     // Visiting right sub tree
     if (node->getRightChild())
     {
-        generateHuffmanCode(node->getRightChild(), encText + "1", {position.x + treeWidth / 2, position.y + 50}, treeWidth / 2);
+        generateHuffmanCode(node->getRightChild(), encText + "1", {position.x + treeWidth / 2, position.y + 100}, position, treeWidth / 2);
     }
 }
 

@@ -16,6 +16,7 @@ Node::Node(std::string key, int priority)
     leftChild = nullptr;
     rightChild = nullptr;
     renderPosition = {0, 0};
+    link = nullptr;
 }
 
 Node::Node(const Node &nd)
@@ -45,9 +46,10 @@ int Node::getPriority()
     return priority;
 }
 
-std::string Node::setEncodingValue(std::string value)
+void Node::setEncodingValue(std::string value)
 {
-    encodingValue = value;
+
+    this->encodingValue = value;
 }
 
 std::string Node::getEncodingValue()
@@ -57,6 +59,7 @@ std::string Node::getEncodingValue()
 
 void Node::setRenderPosition(SDL_Point position)
 {
+
     renderPosition = {position.x, position.y};
 
     nodeText = new Text(this->key, position, {(rand() % 255), (rand() % 255), (rand() % 255), 255}, 30);
@@ -67,7 +70,24 @@ SDL_Point Node::getRenderPosition()
     return renderPosition;
 }
 
+void Node::setParentPosition(SDL_Point position)
+{
+    parentPosition = {position.x, position.y};
+}
+
+SDL_Point Node::getParentPosition()
+{
+}
+
 void Node::render(Window &window)
 {
+    SDL_SetRenderDrawColor(window.renderer, 255, 255, 255, 255);
+
     nodeText->render(window);
+
+    if (parentPosition.x != -1)
+    {
+        std::cout << parentPosition.x << " " << parentPosition.y << std::endl;
+        SDL_RenderDrawLine(window.renderer, this->renderPosition.x - window.offsetCords.x, this->renderPosition.y - window.offsetCords.y, this->parentPosition.x - window.offsetCords.x, this->parentPosition.y - window.offsetCords.y);
+    }
 }

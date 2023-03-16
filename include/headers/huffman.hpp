@@ -52,7 +52,7 @@ private:
     // Creates priority queue from the hashmap
     PriorityQueue createPriorityQueue(std::unordered_map<std::string, int> fMap);
 
-    //Gets key and frequency of the nodes into separate strings for rendering
+    // Gets key and frequency of the nodes into separate strings for rendering
     void generateCountText(PriorityQueue pq);
 
     // Creates Huffman Tree from the priority queue
@@ -63,7 +63,7 @@ private:
     void displayHuffmanTree();
     int findDepthOfHuffmanTree(Node *);
 
-    void generateHuffmanCode(Node *node, std::string encText, SDL_Point, int);
+    void generateHuffmanCode(Node *node, std::string encText, SDL_Point, SDL_Point, int);
 
     void generateEncodedText();
 

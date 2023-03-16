@@ -14,6 +14,8 @@ private:
 
     SDL_Point renderPosition;
 
+    SDL_Point parentPosition;
+
     Text *nodeText;
 
 public:
@@ -28,7 +30,7 @@ public:
 
     int getPriority();
 
-    std::string setEncodingValue(std::string value);
+    void setEncodingValue(std::string value);
     std::string getEncodingValue();
 
     Node *getLeftChild() { return leftChild; }
@@ -36,6 +38,9 @@ public:
 
     void setRenderPosition(SDL_Point position);
     SDL_Point getRenderPosition();
+
+    void setParentPosition(SDL_Point position);
+    SDL_Point getParentPosition();
 
     void render(Window &);
 

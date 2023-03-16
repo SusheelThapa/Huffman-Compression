@@ -17,6 +17,7 @@ Huffman::Huffman(int len)
     countBox = Rectangle({1000, 203}, 300, 700);
 
     randomText = generateRandomText(len);
+    randomizeText = Text(randomText, {100, 220},{255, 255, 255, 255}, 20);
 
     fMap = Hashmap(randomText);
     pq = createPriorityQueue(fMap);
@@ -277,7 +278,6 @@ void Huffman::render()
     randomizeButton.render(window, 400, 71);
     countButton.render(window, 1000, 71);
 
-    randomizeText = Text(randomText, {100, 220}, {rand() % 255, rand() % 255, rand() % 255, 255}, 20);
     randomizeText.render(window);
 
     randomizeText.free();

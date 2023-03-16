@@ -77,7 +77,7 @@ void Huffman::handleEvent()
                     std::cout << huffmanTreeRootNode->getKey() << std::endl;
                     pq.display();
                     depthOfHuffmanTree = findDepthOfHuffmanTree(huffmanTreeRootNode);
-                    treeWidth = 50 * pow(2, depthOfHuffmanTree);
+                    treeWidth = 40 * pow(2, depthOfHuffmanTree);
                     generateHuffmanCode(huffmanTreeRootNode, "", {1500 + encodeButton.getWidth() + (treeWidth / 2), 200}, {-1, -1}, treeWidth / 2);
                     renderHuffmanTree();
 
@@ -255,13 +255,13 @@ void Huffman::generateHuffmanCode(Node *node, std::string encText, SDL_Point pos
     // Visiting left sub-tree
     if (node->getLeftChild())
     {
-        generateHuffmanCode(node->getLeftChild(), encText + "0", {position.x - treeWidth / 2, position.y + 100}, position, treeWidth / 2);
+        generateHuffmanCode(node->getLeftChild(), encText + "0", {position.x - treeWidth / 2, position.y + 150}, position, treeWidth / 2);
     }
 
     // Visiting right sub tree
     if (node->getRightChild())
     {
-        generateHuffmanCode(node->getRightChild(), encText + "1", {position.x + treeWidth / 2, position.y + 100}, position, treeWidth / 2);
+        generateHuffmanCode(node->getRightChild(), encText + "1", {position.x + treeWidth / 2, position.y + 150}, position, treeWidth / 2);
     }
 }
 

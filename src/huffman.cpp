@@ -15,11 +15,8 @@ Huffman::Huffman(int len)
     encodeButton.loadFromFile(window, "resources/DesignedElements/EncodeButton.png");
     compressButton.loadFromFile(window, "resources/DesignedElements/CompressButton.png");
 
-    randomizeBox = Rectangle({77, 203}, 800, 400);
     randomText = generateRandomText(len);
     randomizeText = Text(randomText, {100, 220}, {102, 178, 255, 255}, 20);
-
-    countBox = Rectangle({1000, 203}, 300, 700);
 }
 
 void Huffman::handleEvent()
@@ -96,6 +93,17 @@ void Huffman::handleEvent()
                     std::cout << "Compress button is clicked" << std::endl;
                     compressString();
                     compressedText = Text(cmprText, {50, 1100}, {153, 51, 255, 255}, 20, window.getWidth() - 100);
+
+                    cmprBxtext = "Original string size: ";
+                    cmprBxtext += std::to_string(originalSize);
+                    cmprBxtext += " bits\n";
+                    cmprBxtext += "Compressed string size: ";
+                    cmprBxtext += std::to_string(compressedSize);
+                    cmprBxtext += " bits\n";
+                    cmprBxtext += "Size reduced:   ";
+                    cmprBxtext += std::to_string(((float)(originalSize - compressedSize)/originalSize) * 100);
+                    cmprBxtext += " %\n";
+                    compressionBoxText = Text(cmprBxtext, {window.getWidth() + 20, 1600}, {255, 255, 255}, 20);
                 }
             }
         }
@@ -379,6 +387,9 @@ void Huffman::render()
     {
         compressedText.render(window);
         compressedText.free();
+
+        compressionBoxText.render(window);
+        compressionBoxText.free();
     }
 
     // renderHuffmanTree();

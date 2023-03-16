@@ -123,6 +123,7 @@ int Texture::getHeight()
 void Texture::render(Window &window, int x, int y,
                      SDL_Rect *src_rect, SDL_Rect *dst_rect)
 {
+    this->startingCoordinate = {x, y};
 
     if (dst_rect == NULL)
     {
@@ -130,4 +131,20 @@ void Texture::render(Window &window, int x, int y,
     }
 
     SDL_RenderCopy(window.renderer, texture, src_rect, dst_rect);
+}
+
+bool Texture::isMouseClicked(Window& window, SDL_Point clickedPosition)
+{
+    if(((clickedPosition.x >= this->startingCoordinate.x - window.offsetCords.x) && 
+        (clickedPosition.x <= (this->startingCoordinate.x - window.offsetCords.x + this->getWidth()))) &&
+        ((clickedPosition.y >= this->startingCoordinate.y - window.offsetCords.y) &&
+        (clickedPosition.y <= (this->startingCoordinate.y - window.offsetCords.y + this->getHeight()))))
+        {
+            return true;
+        }
+    
+    else
+    {
+        return false;
+    }
 }

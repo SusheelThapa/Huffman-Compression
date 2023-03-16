@@ -13,6 +13,7 @@ private:
     Texture textTexture;
     TTF_Font *mainFont = NULL;
     int size;
+    bool coloredText;
 
     void createTextTexture (Window &window, int size)
     {
@@ -25,7 +26,7 @@ private:
 public:
 
     Text() {}
-    Text(std::string text, SDL_Point point, SDL_Color color, int size=13);
+    Text(std::string text, SDL_Point point, SDL_Color color, int size=13, bool coloredText = false);
     ~Text();
     void free();
     void render(Window &window);

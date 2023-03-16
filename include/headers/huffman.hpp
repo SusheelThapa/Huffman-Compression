@@ -15,14 +15,15 @@ private:
     SDL_Event e;
 
     std::string randomText;
+    std::string symText, freqText;
     std::unordered_map<std::string, int> fMap;
 
 public:
     Window window;
     Texture randomizeButton, countButton, buildButton, encodeButton;
     Rectangle randomizeBox, countBox;
-    Text randomizeText;
-
+    
+    Text randomizeText, symbolText, frequencyText;
     PriorityQueue pq;
     Node *huffmanTreeRootNode;
 
@@ -48,6 +49,9 @@ private:
 
     // Creates priority queue from the hashmap
     PriorityQueue createPriorityQueue(std::unordered_map<std::string, int> fMap);
+
+    //Gets key and frequency of the nodes into separate strings for rendering
+    void generateCountText(PriorityQueue pq);
 
     // Creates Huffman Tree from the priority queue
 };

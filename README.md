@@ -20,6 +20,12 @@ A Huffman encoding visualizer is a tool that helps users<br> understand the proc
 
 https://user-images.githubusercontent.com/83917129/225862590-4de03708-9de5-4201-9c86-162b9078a85a.mp4
 
+---
+
+**_If you just want to run the project you can just run the executable file inside [executable folder](/executable)._**
+
+---
+
 ## Setting up Project
 
 ### Linux

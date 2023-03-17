@@ -34,7 +34,8 @@
 .vscode/
 
 # Custom ignore file for Linux
-main
+*.out
+*.exe
 bin/
 
 # Custom ignore file for Window

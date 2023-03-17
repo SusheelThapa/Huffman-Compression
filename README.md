@@ -18,7 +18,7 @@ A Huffman encoding visualizer is a tool that helps users<br> understand the proc
 
 ## <p align="center"> Demo </p>
 
-<!-- Demo goes here -->
+https://user-images.githubusercontent.com/83917129/225862590-4de03708-9de5-4201-9c86-162b9078a85a.mp4
 
 ## Setting up Project
 

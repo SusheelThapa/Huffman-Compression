@@ -19,7 +19,7 @@ private:
 
 public:
     Window window;
-    Texture randomizeButton, countButton, buildButton, encodeButton, compressButton;
+    Texture header, randomizeButton, countButton, buildButton, encodeButton, compressButton, credits;
     Text randomizeText, symbolText, frequencyText, encodedText, compressedText, compressionBoxText;
     PriorityQueue pq;
     Node *huffmanTreeRootNode;

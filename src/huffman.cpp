@@ -378,5 +378,5 @@ void Huffman::render()
 
     }
 
-    credits.render(window, 77, 2300);
+    credits.render(window, 430, 150);
 }

@@ -19,7 +19,7 @@ private:
 
 public:
     Window window;
-    Texture randomizeButton, countButton, buildButton, encodeButton, compressButton;
+    Texture header, randomizeButton, countButton, buildButton, encodeButton, compressButton, credits;
     Text randomizeText, symbolText, frequencyText, encodedText, compressedText, compressionBoxText;
     PriorityQueue pq;
     Node *huffmanTreeRootNode;
@@ -60,6 +60,7 @@ private:
     Node *createHuffmanTree();
 
     void displayHuffmanTree();
+
     int findDepthOfHuffmanTree(Node *);
 
     void generateHuffmanCode(Node *node, std::string encText, SDL_Point, SDL_Point, int);

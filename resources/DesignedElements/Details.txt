@@ -31,3 +31,5 @@ X: 612 px Y: 203 px
 CreditsBar:
 1088 x 54 px
 X: 238 px Y: 933 px
+
+Header: 1074px x 120px

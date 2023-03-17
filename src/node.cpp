@@ -64,11 +64,11 @@ void Node::setRenderPosition(SDL_Point position)
 
     if (key.length() > 1)
     {
-        nodeText = new Text(" ", position, {(rand() % 255), (rand() % 255), (rand() % 255), 255}, 30);
+        nodeText = new Text(" ", position, {(rand() % 255), (rand() % 255), (rand() % 255), 255}, 15);
     }
     else
     {
-        nodeText = new Text(this->key, position, {(rand() % 255), (rand() % 255), (rand() % 255), 255}, 30);
+        nodeText = new Text(this->key, position, {(rand() % 255), (rand() % 255), (rand() % 255), 255}, 15);
     }
 }
 
@@ -96,4 +96,6 @@ void Node::render(Window &window)
     {
         SDL_RenderDrawLine(window.renderer, this->renderPosition.x - window.offsetCords.x, this->renderPosition.y - window.offsetCords.y, this->parentPosition.x - window.offsetCords.x, this->parentPosition.y - window.offsetCords.y);
     }
+
+    nodeText->free();
 }

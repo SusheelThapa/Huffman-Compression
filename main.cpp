@@ -3,25 +3,23 @@
 int main(int argc, char *argv[])
 {
 
-	Huffman a(1000);
+	Huffman huffman(1000);
 
 	/*Running the app till window is not closed*/
-	while (!a.window.isWindowClosed())
+	while (!huffman.window.isWindowClosed())
 	{
 		/*Handling the events*/
-		a.handleEvent();
+		huffman.handleEvent();
 
 		/*Clear the window with provide color*/
-		a.window.clear({0, 0, 0, 0});
+		huffman.window.clear({0, 0, 0, 0});
 
-		a.render();
+		huffman.render();
 
 		/*Updating the window*/
-		a.window.present();
-
+		huffman.window.present();
 	}
 
-	std::cout << "Depth of the tree is " << a.depthOfHuffmanTree << std::endl;
-	std::cout << "Original size is: " << a.originalSize << " Compressed size is: " << a.compressedSize << std::endl;  
+	std::cout << "Original size is: " << huffman.originalSize << " Compressed size is: " << huffman.compressedSize << std::endl;
 	return 0;
 }
